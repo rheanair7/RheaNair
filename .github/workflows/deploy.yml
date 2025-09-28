@@ -17,21 +17,30 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ROLLUP_USE_NODE_JS_IMPLEMENTATION: 'true'
     steps:
       - uses: actions/checkout@v4
 
-      - uses: withastro/action@v2
-        env:
-          ROLLUP_USE_NODE_JS_IMPLEMENTATION: 'true'   # <-- add this line
+      - uses: actions/setup-node@v4
         with:
-          path: ./personalwenite
           node-version: 20
-          package-manager: npm
+          cache: 'npm'
+          cache-dependency-path: personalwenite/package-lock.json
+
+      - name: Install
+        run: npm install
+        working-directory: personalwenite
+
+      - name: Build
+        run: npm run build
+        working-directory: personalwenite
 
       - uses: actions/configure-pages@v5
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./personalwenite/dist
+          path: personalwenite/dist
 
   deploy:
     needs: build
