@@ -10,7 +10,7 @@ const { data, slug } = Astro.props.project;
 
 <a class="card" href={import.meta.env.BASE_URL + `work/${slug}/`}>
 	<span class="title">{data.title}</span>
-	<img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
+	<img src={data.img.replace('./assets/', import.meta.env.BASE_URL + 'assets/')} alt={data.img_alt || ''} loading="lazy" decoding="async" />
 </a>
 
 <style>
