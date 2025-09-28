@@ -37,9 +37,15 @@ const newsItems = (await getCollection('news'))
 					align="start"
 				>
 					<div class="roles">
-						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
-						<Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+						<CallToAction href="#skills" class="role-pill">
+							<Icon icon="code" size="1.2em" /> Developer
+						</CallToAction>
+						<CallToAction href="#skills" class="role-pill">
+							<Icon icon="microphone-stage" size="1.2em" /> Speaker
+						</CallToAction>
+						<CallToAction href="#skills" class="role-pill">
+							<Icon icon="pencil-line" size="1.2em" /> Writer
+						</CallToAction>
 					</div>
 				</Hero>
 
@@ -53,7 +59,9 @@ const newsItems = (await getCollection('news'))
 				/>
 			</header>
 
-			<Skills />
+			<section id="skills">
+				<Skills />
+			</section>
 		</div>
 
 		<main class="wrapper stack gap-20 lg:gap-48">
@@ -305,6 +313,33 @@ const newsItems = (await getCollection('news'))
 
 		.news-card h4 {
 			font-size: var(--text-xl);
+		}
+	}
+
+	/* Role pill styles - smaller version of CallToAction */
+	.roles :global(.role-pill) {
+		padding: 0.4em 1.2em !important;
+		font-size: var(--text-sm) !important;
+		font-weight: 500;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.roles :global(.role-pill:hover) {
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-lg);
+	}
+
+	.roles {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		justify-content: flex-start;
+	}
+
+	@media (max-width: 50em) {
+		.roles :global(.role-pill) {
+			font-size: var(--text-xs) !important;
+			padding: 0.35em 1em !important;
 		}
 	}
 </style>
