@@ -17,9 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./personalwenite
     env:
       # Avoid Rollup native binary issue on CI
       ROLLUP_USE_NODE_JS_IMPLEMENTATION: 'true'
@@ -44,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: personalwenite/dist
+          path: dist
 
   deploy:
     needs: build
