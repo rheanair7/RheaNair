@@ -354,7 +354,7 @@ const isCurrentPage = (href: string) => {
 		.desktop-theme-toggle {
 			display: block;
 			position: absolute;
-			right: 2rem;
+			right: 1rem;
 			top: 50%;
 			transform: translateY(-50%);
 		}
@@ -369,6 +369,11 @@ const isCurrentPage = (href: string) => {
 			display: flex;
 			justify-content: flex-end;
 			gap: 0;
+			margin-right: 4rem; /* Add space for theme toggle */
+		}
+
+		.desktop-theme-toggle {
+			right: 1rem; /* Keep theme toggle close to edge */
 		}
 	}
 	@media (forced-colors: active) {
