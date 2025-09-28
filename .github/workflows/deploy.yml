@@ -31,9 +31,11 @@ jobs:
 
       - name: Install
         run: npm install
+        working-directory: personalwenite
 
       - name: Build
         run: npm run build
+        working-directory: personalwenite
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
