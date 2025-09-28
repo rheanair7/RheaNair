@@ -32,11 +32,20 @@ jobs:
       - name: Clear npm cache
         run: npm cache clean --force
 
+      - name: Remove package-lock and node_modules
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+
       - name: Install
-        run: npm ci --no-optional
+        run: npm install
+        env:
+          ROLLUP_USE_NODE_JS_IMPLEMENTATION: 'true'
 
       - name: Build
         run: npm run build
+        env:
+          ROLLUP_USE_NODE_JS_IMPLEMENTATION: 'true'
         
 
       - name: Configure Pages
