@@ -18,28 +18,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      # Avoid Rollup native binary issue on CI
       ROLLUP_USE_NODE_JS_IMPLEMENTATION: 'true'
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          
+          node-version: 20   # no cache path now—build is at repo root
+          cache: 'npm'
 
       - name: Install
         run: npm install
-        working-directory: personalwenite
 
       - name: Build
         run: npm run build
-        working-directory: personalwenite
 
-      - uses: actions/configure-pages@v5
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: personalwenite/dist
+          path: dist   # build output at repo root
 
   deploy:
     needs: build
