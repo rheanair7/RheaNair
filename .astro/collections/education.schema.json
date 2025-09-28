@@ -1,0 +1,39 @@
+{
+  "$ref": "#/definitions/education",
+  "definitions": {
+    "education": {
+      "type": "object",
+      "properties": {
+        "school": {
+          "type": "string"
+        },
+        "degree": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "school",
+        "degree",
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

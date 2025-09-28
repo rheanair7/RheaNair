@@ -1,0 +1,303 @@
+---
+import { getCollection } from 'astro:content';
+
+// turn "2027", "2024 – 2025", or "Present" into a sortable year
+function toYear(v: unknown) {
+  if (!v) return -Infinity;
+  const s = String(v).trim();
+  if (/present/i.test(s)) return 9999;
+  const yrs = s.match(/\d{4}/g);
+  return yrs ? Number(yrs[yrs.length - 1]) : -Infinity;
+}
+
+const entries = await getCollection('education');
+
+const education = entries
+  .map(({ data }) => {
+    const startY = toYear((data as any).start);
+    const endY   = toYear((data as any).end);
+    return { ...(data as any), startY, endY };
+  })
+  // newest first
+  .sort((a, b) =>
+    (b.endY - a.endY) ||
+    (b.startY - a.startY) ||
+    ((a.order ?? 999) - (b.order ?? 999))
+  );
+---
+
+<div class="timeline" id="edu-timeline">
+  {education.map((edu, i) => {
+    const side = i % 2 === 0 ? 'left' : 'right';
+    const stagger = i % 2 === 1 ? 'stagger' : ''; // offset every right item
+    return (
+      <div class="row">
+        <div class={`card ${side} ${stagger} reveal`} data-side={side}>
+          <h3 class="degree">{edu.degree}</h3>
+          <div class="school">{edu.school}</div>
+          <div class="dates">{edu.start} – {edu.end}</div>
+          {edu.details && <p class="details">{edu.details}</p>}
+        </div>
+        <div class={`dot ${stagger} reveal`} aria-hidden="true" data-side={side}></div>
+      </div>
+    );
+  })}
+</div>
+
+<script is:inline>
+  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function reveal() {
+    const els = document.querySelectorAll('#edu-timeline .reveal');
+    if (media.matches) {
+      els.forEach((el) => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+    els.forEach((el) => io.observe(el));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', reveal);
+  } else {
+    reveal();
+  }
+</script>
+
+<style>
+/* ========= easy theme knobs ========= */
+:root{
+  --accent-1:#6366f1; --accent-2:#a78bfa; --accent-3:#4f46e5;
+  --card-bg:rgba(255,255,255,.9); --card-bg-dark:rgba(10,14,22,.6);
+}
+
+/* timeline is now a simple block; each .row is a real grid row */
+.timeline{
+  position: relative;
+  max-width: 1100px;
+  margin: 3rem auto 4rem;
+  padding: 0 1rem;
+}
+
+/* center spine that spans the whole container */
+.timeline::before{
+  content:"";
+  position:absolute; top:0; bottom:0; left:50%;
+  transform:translateX(-50%);
+  width:2px;
+  background:linear-gradient(180deg,
+    color-mix(in srgb, var(--accent-2) 30%, transparent),
+    var(--accent-1),
+    color-mix(in srgb, var(--accent-2) 30%, transparent)
+  );
+  border-radius:2px;
+}
+
+/* Each entry = one grid row: [left | spine | right] */
+.row{
+  display:grid;
+  grid-template-columns: 1fr 36px 1fr;
+  align-items:center;
+  margin-bottom: 2.5rem;            /* spacing between rows */
+}
+
+/* spine dot */
+.dot{
+  grid-column:2;
+  width:12px; height:12px;
+  justify-self:center; 
+  background:radial-gradient(circle at 30% 30%, var(--accent-2) 0%, var(--accent-1) 65%, #3b34dd 100%);
+  border:3px solid rgba(255,255,255,.95);
+  border-radius:999px;
+  box-shadow:0 0 0 6px color-mix(in srgb, var(--accent-1) 25%, transparent),
+             0 10px 18px rgba(0,0,0,.25);
+  transition:transform .28s ease, opacity .28s ease;
+}
+
+/* cards */
+.card{
+  background:var(--card-bg);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:18px;
+  padding:1.1rem 1.25rem;
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
+  transition:transform .28s ease, box-shadow .28s ease, opacity .28s ease;
+}
+.card:hover{ transform:translateY(-4px); box-shadow:0 14px 32px rgba(0,0,0,.18); }
+
+/* place per side for THIS ROW only */
+.card.left  { grid-column:1; justify-self:end;  max-width:520px; }
+.card.right { grid-column:3; justify-self:start; max-width:520px; }
+
+/* typography */
+.degree{ margin:0 0 .25rem; font-weight:800; font-size:clamp(1.05rem,1.2vw + .8rem,1.4rem); color:var(--gray-0,#0f172a); }
+.school{ font-size:.95rem; color:var(--gray-300,#475569); }
+.dates{ margin-top:.15rem; font-size:.82rem; color:var(--accent-3); font-weight:600; letter-spacing:.02em; }
+.details{ margin-top:.4rem; font-size:.9rem; color:var(--gray-200,#334155); }
+
+/* reveal states (unchanged) */
+.reveal{ opacity:0; }
+.card.reveal[data-side="left"]  { transform:translateX(-28px); }
+.card.reveal[data-side="right"] { transform:translateX( 28px); }
+.dot.reveal{ transform:scale(.6); }
+.reveal.in{ opacity:1; transform:none; }
+
+/* mobile: one column, spine left */
+@media (max-width:800px){
+  .row{ grid-template-columns:28px 1fr; }
+  .timeline::before{ left:14px; transform:none; width:2px; }
+  .dot{ grid-column:1; }
+  .card{ grid-column:2; justify-self:start; max-width:none; }
+  .card.reveal[data-side="left"],
+  .card.reveal[data-side="right"]{ transform:translateY(16px); }
+}
+
+/* dark mode */
+:global(html.dark) .card{ background:var(--card-bg-dark); border-color:rgba(255,255,255,.06); color:#e5e7eb; }
+:global(html.dark) .details{ color:#cbd5e1; }
+:global(html.dark) .school { color:#a3aec2; }
+</style>
+
+
+<!-- ---
+import { getCollection } from 'astro:content';
+
+// pull from /src/content/education/*.json (or .yml) like we set up
+const entries = await getCollection('education');
+const education = entries
+  .map((e) => e.data)
+  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+---
+
+<div class="timeline">
+  {education.map((edu, i) => (
+    <div class="row">
+      <div class={`card ${i % 2 === 0 ? 'left' : 'right'}`}>
+        <h3 class="degree">{edu.degree}</h3>
+        <div class="school">{edu.school}</div>
+        <div class="dates">{edu.start} – {edu.end}</div>
+        {edu.details && <p class="details">{edu.details}</p>}
+      </div>
+      <div class="dot" aria-hidden="true"></div>
+    </div>
+  ))}
+</div>
+
+<style>
+  /* container grid: 3 columns (left | spine | right) */
+  .timeline{
+    position: relative;
+    max-width: 1100px;
+    margin: 3rem auto 4rem auto;
+    display: grid;
+    grid-template-columns: 1fr 36px 1fr;
+    row-gap: 2.5rem;
+    padding: 0 1rem;
+  }
+
+  /* center spine */
+  .timeline::before{
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background: linear-gradient(180deg, rgba(99,102,241,.2), rgba(99,102,241,.6), rgba(99,102,241,.2));
+    border-radius: 2px;
+  }
+
+  /* one logical row = card + dot */
+  .row{
+    display: contents; /* so children place into the 3 columns */
+  }
+
+  /* the connector dot on the spine */
+  .dot{
+    grid-column: 2;
+    width: 12px; height: 12px;
+    align-self: center; justify-self: center;
+    background: radial-gradient( circle at 30% 30%, #a78bfa 0%, #6366f1 60%, #4f46e5 100%);
+    border: 3px solid rgba(255,255,255,.9);
+    border-radius: 999px;
+    box-shadow: 0 0 0 6px rgba(99,102,241,.18), 0 10px 18px rgba(0,0,0,.25);
+  }
+
+  /* shared card styles (glassy white, rounded, hover lift) */
+  .card{
+    background: rgba(255,255,255, .9);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 18px;
+    padding: 1.1rem 1.25rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0,0,0,.18);
+  }
+
+  /* place left/right */
+  .card.left  { grid-column: 1; justify-self: end;  max-width: 520px; }
+  .card.right { grid-column: 3; justify-self: start; max-width: 520px; }
+
+  /* typography tuned to your theme variables */
+  .degree{
+    margin: 0 0 .25rem 0;
+    font-weight: 800;
+    font-size: clamp(1.05rem, 1.2vw + .8rem, 1.4rem);
+    color: var(--gray-0, #0f172a);
+  }
+  .school{
+    font-size: .95rem;
+    color: var(--gray-300, #475569);
+  }
+  .dates{
+    margin-top: .15rem;
+    font-size: .82rem;
+    color: #4f46e5; /* accent */
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+  .details{
+    margin-top: .4rem;
+    font-size: .9rem;
+    color: var(--gray-200, #334155);
+  }
+
+  /* Mobile: stack on one column, spine moves left */
+  @media (max-width: 800px){
+    .timeline{
+      grid-template-columns: 28px 1fr; /* spine | content */
+      padding-left: .5rem;
+    }
+    .timeline::before{
+      left: 14px; transform: none; width: 2px;
+    }
+    .dot{ grid-column: 1; }
+    .card{
+      grid-column: 2;
+      justify-self: start;
+      max-width: none;
+    }
+  }
+
+  /* Dark-mode polish if your site toggles dark */
+  :global(html.dark) .card{
+    background: rgba(10,14,22,.6);
+    border-color: rgba(255,255,255,.06);
+    color: #e5e7eb;
+  }
+  :global(html.dark) .details{ color: #cbd5e1; }
+  :global(html.dark) .school { color: #a3aec2; }
+</style> -->
