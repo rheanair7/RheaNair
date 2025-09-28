@@ -245,12 +245,82 @@ const newsItems = (await getCollection('news'))
 
 	/* ====================================================== */
 
-	.news-timeline {
+	/* Override section constraints for news section */
+	.section.bg-variant {
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
-		max-width: 800px;
+		align-items: center;
+		width: 100%;
+	}
+
+	.news-gallery {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		max-width: none;
+		padding: 0 2rem;
+	}
+
+	.news-timeline {
+		background: var(--gray-999_40);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		padding: 2.5rem;
+		box-shadow: var(--shadow-md);
+		max-height: 500px;
+		overflow-y: auto;
+		overflow-x: hidden;
+		width: 100%;
+		max-width: 1000px;
 		margin: 0 auto;
+		scrollbar-width: thin;
+		scrollbar-color: var(--accent-regular) var(--gray-800);
+	}
+
+	/* Custom scrollbar for webkit browsers */
+	.news-timeline::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	.news-timeline::-webkit-scrollbar-track {
+		background: var(--gray-800);
+		border-radius: 5px;
+	}
+
+	.news-timeline::-webkit-scrollbar-thumb {
+		background: var(--accent-regular);
+		border-radius: 5px;
+	}
+
+	.news-timeline::-webkit-scrollbar-thumb:hover {
+		background: var(--accent-text-over);
+	}
+
+	/* Force scrollbar to always show */
+	.news-timeline::-webkit-scrollbar-thumb {
+		background: var(--accent-regular);
+		border-radius: 5px;
+		min-height: 20px;
+	}
+
+	/* Custom scrollbar for webkit browsers */
+	.news-timeline::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	.news-timeline::-webkit-scrollbar-track {
+		background: var(--gray-800);
+		border-radius: 4px;
+	}
+
+	.news-timeline::-webkit-scrollbar-thumb {
+		background: var(--accent-regular);
+		border-radius: 4px;
+	}
+
+	.news-timeline::-webkit-scrollbar-thumb:hover {
+		background: var(--accent-text-over);
 	}
 
 	.news-item {
@@ -291,8 +361,13 @@ const newsItems = (await getCollection('news'))
 	}
 
 	@media (max-width: 50em) {
+		.news-gallery {
+			padding: 0 1rem;
+		}
+
 		.news-timeline {
-			gap: 1.5rem;
+			padding: 1.5rem;
+			max-height: 400px;
 		}
 
 		.news-item {
