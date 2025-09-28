@@ -26,16 +26,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20   # no cache path now—build is at repo root
+          node-version: 20
           cache: 'npm'
+          cache-dependency-path: 'personalwenite/package-lock.json'
 
       - name: Install
         run: npm install
-        working-directory: personalwenite
+        working-directory: ./personalwenite
 
       - name: Build
         run: npm run build
-        working-directory: personalwenite
+        working-directory: ./personalwenite
+        
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -43,7 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist   # build output at repo root
+          path: personalwenite/dist
 
   deploy:
     needs: build
