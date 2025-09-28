@@ -9,7 +9,7 @@ const { project } = Astro.props;
 <div class="portfolio-preview">
 	<div class="preview-content">
 		<h3 class="title">
-			<a href={`./work/${project.slug}/`}>{project.data.title}</a>
+			<a href={`/work/${project.slug}/`}>{project.data.title}</a>
 		</h3>
 		<p class="description">{project.data.description}</p>
 		{project.data.tags && (
