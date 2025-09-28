@@ -34,7 +34,7 @@ const projects = (await getCollection('work'))
 					<div class="roles">
 						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
 						<Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill> -->
+						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
 					</div>
 				</Hero>
 
@@ -42,7 +42,7 @@ const projects = (await getCollection('work'))
 					alt="Rhea Nair"
 					width="480"
 					height="620"
-					src="./assets/potrait.jpg"
+					src={`${import.meta.env.BASE_URL}assets/potrait.jpg`}
 					
 					class="object-contain w-full h-48 rounded-lg"
 				/>

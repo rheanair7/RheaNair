@@ -13,12 +13,13 @@ const { class: className } = Astro.props;
 <style>
 .pill {
 	display: inline-block;
-	background: var(--bg-secondary, #f8f9fa);
-	color: var(--text-secondary, #666);
+	background: var(--gradient-accent);
+	color: var(--accent-text-over);
 	padding: 0.5rem 1rem;
 	border-radius: 20px;
 	font-size: 0.875rem;
 	font-weight: 500;
-	border: 1px solid var(--border-color, #e1e5e9);
+	border: 1px solid var(--accent-regular);
+	box-shadow: var(--shadow-sm);
 }
 </style>
