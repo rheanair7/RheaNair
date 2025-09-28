@@ -20,17 +20,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # This action installs deps and builds without needing a lockfile
       - uses: withastro/action@v2
+        env:
+          ROLLUP_USE_NODE_JS_IMPLEMENTATION: 'true'   # <-- add this line
         with:
-          path: .
+          path: ./personalwenite
           node-version: 20
           package-manager: npm
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./personalwenite/dist
 
   deploy:
     needs: build
