@@ -1,38 +1,42 @@
 ---
 import { getCollection } from 'astro:content';
-import ContactCTA from '../components/ContactCTA.astro';
-import Grid from '../components/Grid.astro';
-import Hero from '../components/Hero.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import MainHead from '../components/MainHead.astro';
 
 const projects = (await getCollection('work')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
 );
 ---
 
-<BaseLayout title="Work">
-  <div class="section container">
-    <header class="wrapper">
-      <div class="content">
-        <Hero title="Work" align="start">
-          <p class="description">
-            Selected projects and experiments.
-          </p>
-        </Hero>
-      </div>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<MainHead title="Work | Rhea Nair" description="My work and projects" />
+	</head>
+	<body>
+		<div class="section container">
+			<header class="wrapper">
+				<div class="content">
+					<h1>Work</h1>
+					<p class="description">
+						Selected projects and experiments.
+					</p>
+				</div>
+			</header>
 
-    <main class="wrapper">
-      <Grid variant="offset">
-        {projects.map((project) => (
-          <li>
-            <PortfolioPreview project={project} />
-          </li>
-        ))}
-      </Grid>
-    </main>
-
-    <ContactCTA />
-  </div>
-</BaseLayout>
+			<main class="wrapper">
+				<div class="gallery">
+					{projects.map((project) => (
+						<div class="project-preview">
+							<h2>
+								<a href={`/work/${project.slug}/`}>
+									{project.data.title}
+								</a>
+							</h2>
+							<p>{project.data.description}</p>
+						</div>
+					))}
+				</div>
+			</main>
+		</div>
+	</body>
+</html>
