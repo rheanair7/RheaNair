@@ -85,26 +85,32 @@ const newsItems = (await getCollection('news'))
 
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>News</h3>
+					<h3>Latest News & Accomplishments</h3>
+					<p>
+						Stay updated with my recent achievements, publications, speaking engagements, and 
+						professional milestones in data science and technology.
+					</p>
 				</header>
 
-				<div class="news-timeline">
-					{
-						newsItems.map((newsItem) => (
-							<div class="news-item">
-								<div class="news-date">
-									{newsItem.data.publishDate.toLocaleDateString('en-US', {
-										year: 'numeric',
-										month: 'short',
-										day: '2-digit'
-									})}
-								</div>
-								<div class="news-content">
-									<p set:html={newsItem.data.description} />
-								</div>
-							</div>
-						))
-					}
+				<div class="news-gallery">
+					<div class="news-grid">
+						{
+							newsItems.map((newsItem) => (
+								<article class="news-card">
+									<div class="news-category">{newsItem.data.category}</div>
+									<h4>{newsItem.data.title}</h4>
+									<p class="news-description" set:html={newsItem.data.description} />
+									<time class="news-date">
+										{newsItem.data.publishDate.toLocaleDateString('en-US', {
+											year: 'numeric',
+											month: 'long',
+											day: 'numeric'
+										})}
+									</time>
+								</article>
+							))
+						}
+					</div>
 				</div>
 			</section>
 		</main>
@@ -236,83 +242,69 @@ const newsItems = (await getCollection('news'))
 
 	/* ====================================================== */
 
-	.news-timeline {
+	.news-grid {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.news-card {
 		display: flex;
 		flex-direction: column;
-		gap: 1.2rem;
-		max-width: 1000px;
+		gap: 1rem;
+		padding: 1.5rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.news-card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.news-category {
+		display: inline-block;
+		padding: 0.25rem 0.75rem;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--accent-text-over);
+		background: var(--gradient-accent);
+		border-radius: 1rem;
+		width: fit-content;
+	}
+
+	.news-card h4 {
+		font-size: var(--text-lg);
+		color: var(--gray-100);
 		margin: 0;
-		padding: 0;
 	}
 
-	.news-item {
-		display: flex;
-		gap: 1.2rem;
-		align-items: start;
-		padding: 0.8rem 0;
-		border-bottom: 1px solid var(--gray-800);
-	}
-
-	.news-item:last-child {
-		border-bottom: none;
+	.news-description {
+		color: var(--gray-300);
+		margin: 0;
 	}
 
 	.news-date {
 		font-size: var(--text-sm);
-		font-weight: 600;
 		color: var(--gray-400);
-		min-width: 90px;
-		flex-shrink: 0;
-		text-align: left;
-	}
-
-	.news-content {
-		color: var(--gray-200);
-		line-height: 1.5;
-		flex: 1;
-	}
-
-	.news-content p {
-		margin: 0;
-	}
-
-	.news-content em {
-		font-style: italic;
-		color: var(--gray-100);
-	}
-
-	.news-content a {
-		color: var(--accent-regular);
-		text-decoration: none;
-		transition: color var(--theme-transition);
-	}
-
-	.news-content a:hover {
-		color: var(--accent-text-over);
-		text-decoration: underline;
+		margin-top: auto;
 	}
 
 	@media (min-width: 50em) {
-		.news-date {
-			min-width: 100px;
-			font-size: var(--text-base);
-		}
-		
-		.news-item {
-			gap: 1.5rem;
-			padding: 1rem 0;
-		}
-	}
-
-	@media (max-width: 50em) {
-		.news-item {
-			flex-direction: column;
-			gap: 0.3rem;
+		.news-grid {
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
 		}
 
-		.news-date {
-			font-size: var(--text-xs);
-			min-width: auto;
+		.news-card {
+			padding: 2rem;
+		}
+
+		.news-card h4 {
+			font-size: var(--text-xl);
 		}
 	}
 </style>
