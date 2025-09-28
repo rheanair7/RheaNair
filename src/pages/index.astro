@@ -245,12 +245,16 @@ const newsItems = (await getCollection('news'))
 
 	/* ====================================================== */
 
-	/* Override section constraints for news section */
+	/* Center align the entire news section */
 	.section.bg-variant {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		width: 100%;
+	}
+
+	.section.bg-variant .section-header {
+		text-align: center;
 	}
 
 	.news-gallery {
