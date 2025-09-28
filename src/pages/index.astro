@@ -18,6 +18,11 @@ const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.slice(0, 4);
 
+// Content Fetching: List recent news and accomplishments  
+const newsItems = (await getCollection('news'))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.slice(0, 3);
+
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
 ---
@@ -80,23 +85,32 @@ const projects = (await getCollection('work'))
 
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Mentions</h3>
+					<h3>Latest News & Accomplishments</h3>
 					<p>
-						I have been fortunate enough to receive praise for my work in several publications. Take
-						a look below to learn more.
+						Stay updated with my recent achievements, publications, speaking engagements, and 
+						professional milestones in data science and technology.
 					</p>
 				</header>
 
-				<div class="gallery">
-					<Grid variant="small">
+				<div class="news-gallery">
+					<div class="news-grid">
 						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
+							newsItems.map((newsItem) => (
+								<article class="news-card">
+									<div class="news-category">{newsItem.data.category}</div>
+									<h4>{newsItem.data.title}</h4>
+									<p class="news-description">{newsItem.data.description}</p>
+									<time class="news-date">
+										{newsItem.data.publishDate.toLocaleDateString('en-US', {
+											year: 'numeric',
+											month: 'long',
+											day: 'numeric'
+										})}
+									</time>
+								</article>
 							))
 						}
-					</Grid>
+					</div>
 				</div>
 			</section>
 		</main>
@@ -228,23 +242,69 @@ const projects = (await getCollection('work'))
 
 	/* ====================================================== */
 
-	.mention-card {
+	.news-grid {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.news-card {
 		display: flex;
-		height: 7rem;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1.5rem;
 		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
-		color: var(--gray-300);
+		border-radius: 1rem;
 		background: var(--gradient-subtle);
 		box-shadow: var(--shadow-sm);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.news-card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.news-category {
+		display: inline-block;
+		padding: 0.25rem 0.75rem;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--accent-text-over);
+		background: var(--gradient-accent);
+		border-radius: 1rem;
+		width: fit-content;
+	}
+
+	.news-card h4 {
+		font-size: var(--text-lg);
+		color: var(--gray-100);
+		margin: 0;
+	}
+
+	.news-description {
+		color: var(--gray-300);
+		margin: 0;
+	}
+
+	.news-date {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		margin-top: auto;
 	}
 
 	@media (min-width: 50em) {
-		.mention-card {
-			border-radius: 1.5rem;
-			height: 9.5rem;
+		.news-grid {
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+		}
+
+		.news-card {
+			padding: 2rem;
+		}
+
+		.news-card h4 {
+			font-size: var(--text-xl);
 		}
 	}
 </style>

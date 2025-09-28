@@ -15,6 +15,17 @@ export const collections = {
 		}),
 	}),
 
+	// NEWS: accomplishments and news collection
+	news: defineCollection({
+		loader: glob({ base: './src/content/news', pattern: '**/*.md' }),
+		schema: z.object({
+			title: z.string(),
+			description: z.string(),
+			publishDate: z.coerce.date(),
+			category: z.string(), // "Award", "Publication", "Speaking", "News"
+		}),
+	}),
+
  // NEW: education data collection
   education: defineCollection({
     loader: glob({

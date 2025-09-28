@@ -140,7 +140,30 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"work": {
+		"news": {
+"01-data-science-award.md": {
+	id: "01-data-science-award.md";
+  slug: "01-data-science-award";
+  body: string;
+  collection: "news";
+  data: any
+} & { render(): Render[".md"] };
+"02-nlp-research-publication.md": {
+	id: "02-nlp-research-publication.md";
+  slug: "02-nlp-research-publication";
+  body: string;
+  collection: "news";
+  data: any
+} & { render(): Render[".md"] };
+"03-boulder-tech-keynote.md": {
+	id: "03-boulder-tech-keynote.md";
+  slug: "03-boulder-tech-keynote";
+  body: string;
+  collection: "news";
+  data: any
+} & { render(): Render[".md"] };
+};
+"work": {
 "nlp-customer-support.md": {
 	id: "nlp-customer-support.md";
   slug: "nlp-customer-support";
