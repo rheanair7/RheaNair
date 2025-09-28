@@ -46,6 +46,9 @@ jobs:
         run: npm run build
         env:
           ROLLUP_USE_NODE_JS_IMPLEMENTATION: 'true'
+
+      - name: Add .nojekyll file
+        run: touch dist/.nojekyll
         
 
       - name: Configure Pages
