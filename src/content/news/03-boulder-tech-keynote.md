@@ -1,8 +1,6 @@
 ---
-title: "Keynote Speaker at Boulder Tech Summit"
-publishDate: 2024-09-30
-description: "Delivered keynote presentation on 'The Future of AI in Business Intelligence' to 500+ attendees."
-category: "Speaking"
+title: "CVPR Workshop Posters"
+publishDate: 2025-05-22
+description: "Two posters accepted at CVPR 2025 Workshop - 1) <em>Physics-guided Diffusion Neural Operators for Solving Forward and Inverse PDEs</em>, 2) <em>Scientific Equation Discovery using Modular Symbolic Regression via Vision-Language Guidance</em>! Excited to share that we'll also be giving a lightning talk at the workshop—looking forward to the discussion!"
+category: "Publication"
 ---
-
-Had the privilege of speaking at Boulder Tech Summit 2024, sharing insights on how AI is transforming business intelligence and the importance of ethical AI implementations in modern data science.

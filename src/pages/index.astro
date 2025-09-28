@@ -21,7 +21,7 @@ const projects = (await getCollection('work'))
 // Content Fetching: List recent news and accomplishments  
 const newsItems = (await getCollection('news'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-	.slice(0, 3);
+	.slice(0, 5);
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -85,32 +85,26 @@ const newsItems = (await getCollection('news'))
 
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Latest News & Accomplishments</h3>
-					<p>
-						Stay updated with my recent achievements, publications, speaking engagements, and 
-						professional milestones in data science and technology.
-					</p>
+					<h3>News</h3>
 				</header>
 
-				<div class="news-gallery">
-					<div class="news-grid">
-						{
-							newsItems.map((newsItem) => (
-								<article class="news-card">
-									<div class="news-category">{newsItem.data.category}</div>
-									<h4>{newsItem.data.title}</h4>
-									<p class="news-description">{newsItem.data.description}</p>
-									<time class="news-date">
-										{newsItem.data.publishDate.toLocaleDateString('en-US', {
-											year: 'numeric',
-											month: 'long',
-											day: 'numeric'
-										})}
-									</time>
-								</article>
-							))
-						}
-					</div>
+				<div class="news-timeline">
+					{
+						newsItems.map((newsItem) => (
+							<div class="news-item">
+								<div class="news-date">
+									{newsItem.data.publishDate.toLocaleDateString('en-US', {
+										year: 'numeric',
+										month: 'short',
+										day: '2-digit'
+									})}
+								</div>
+								<div class="news-content">
+									<p set:html={newsItem.data.description} />
+								</div>
+							</div>
+						))
+					}
 				</div>
 			</section>
 		</main>
@@ -242,69 +236,80 @@ const newsItems = (await getCollection('news'))
 
 	/* ====================================================== */
 
-	.news-grid {
-		display: grid;
-		gap: 1.5rem;
-		grid-template-columns: 1fr;
-	}
-
-	.news-card {
+	.news-timeline {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
-		padding: 1.5rem;
-		border: 1px solid var(--gray-800);
-		border-radius: 1rem;
-		background: var(--gradient-subtle);
-		box-shadow: var(--shadow-sm);
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		gap: 1.5rem;
+		max-width: 900px;
+		margin: 0 auto;
 	}
 
-	.news-card:hover {
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-md);
+	.news-item {
+		display: grid;
+		grid-template-columns: 100px 1fr;
+		gap: 1.5rem;
+		align-items: start;
+		padding: 1rem 0;
+		border-bottom: 1px solid var(--gray-800);
 	}
 
-	.news-category {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		font-size: var(--text-sm);
-		font-weight: 600;
-		color: var(--accent-text-over);
-		background: var(--gradient-accent);
-		border-radius: 1rem;
-		width: fit-content;
-	}
-
-	.news-card h4 {
-		font-size: var(--text-lg);
-		color: var(--gray-100);
-		margin: 0;
-	}
-
-	.news-description {
-		color: var(--gray-300);
-		margin: 0;
+	.news-item:last-child {
+		border-bottom: none;
 	}
 
 	.news-date {
 		font-size: var(--text-sm);
+		font-weight: 600;
 		color: var(--gray-400);
-		margin-top: auto;
+		text-align: left;
+		white-space: nowrap;
+	}
+
+	.news-content {
+		color: var(--gray-200);
+		line-height: 1.6;
+	}
+
+	.news-content p {
+		margin: 0;
+	}
+
+	.news-content em {
+		font-style: italic;
+		color: var(--gray-100);
+	}
+
+	.news-content a {
+		color: var(--accent-regular);
+		text-decoration: none;
+		transition: color var(--theme-transition);
+	}
+
+	.news-content a:hover {
+		color: var(--accent-text-over);
+		text-decoration: underline;
 	}
 
 	@media (min-width: 50em) {
-		.news-grid {
-			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		.news-item {
+			grid-template-columns: 120px 1fr;
 			gap: 2rem;
+			padding: 1.5rem 0;
 		}
 
-		.news-card {
-			padding: 2rem;
+		.news-date {
+			font-size: var(--text-base);
+		}
+	}
+
+	@media (max-width: 50em) {
+		.news-item {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
 		}
 
-		.news-card h4 {
-			font-size: var(--text-xl);
+		.news-date {
+			font-size: var(--text-xs);
 		}
 	}
 </style>

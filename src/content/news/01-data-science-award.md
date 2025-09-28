@@ -1,8 +1,6 @@
 ---
-title: "Excellence in Data Science Award"
-publishDate: 2024-11-15
-description: "Received recognition for outstanding contributions to customer analytics and machine learning implementations."
-category: "Award"
+title: "Scientific Foundation Models Research"
+publishDate: 2025-06-03
+description: "Our work on <em>Scientific Foundation models</em> has been accepted at ICML 2025 Workshop - Toward Scientific Foundation Models for Aquatic Ecosystems!"
+category: "Publication"
 ---
-
-Honored to receive the Excellence in Data Science Award for developing innovative customer analytics solutions that increased client engagement by 40% and improved predictive accuracy by 25%.

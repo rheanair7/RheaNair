@@ -162,6 +162,20 @@ declare module 'astro:content' {
   collection: "news";
   data: any
 } & { render(): Render[".md"] };
+"04-iclr-paper.md": {
+	id: "04-iclr-paper.md";
+  slug: "04-iclr-paper";
+  body: string;
+  collection: "news";
+  data: any
+} & { render(): Render[".md"] };
+"05-neurips-dataset.md": {
+	id: "05-neurips-dataset.md";
+  slug: "05-neurips-dataset";
+  body: string;
+  collection: "news";
+  data: any
+} & { render(): Render[".md"] };
 };
 "work": {
 "nlp-customer-support.md": {

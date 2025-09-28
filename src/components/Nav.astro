@@ -44,6 +44,9 @@ const isCurrentPage = (href: string) => {
 			</template>
 		</menu-button>
 	</div>
+	<div class="desktop-theme-toggle">
+		<ThemeToggle />
+	</div>
 	<noscript>
 		<ul class="nav-items">
 			{
@@ -93,6 +96,10 @@ const isCurrentPage = (href: string) => {
 						</a>
 					))
 				}
+			</div>
+
+			<div class="theme-toggle">
+				<ThemeToggle />
 			</div>
 		</div>
 	</div>
@@ -260,6 +267,16 @@ const isCurrentPage = (href: string) => {
 		height: calc(var(--icon-size) + 2 * var(--icon-padding));
 	}
 
+	.desktop-theme-toggle {
+		display: none;
+	}
+
+	.theme-toggle {
+		margin-top: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--gray-800);
+	}
+
 	@media (min-width: 50em) {
 		nav {
 			display: grid;
@@ -331,6 +348,18 @@ const isCurrentPage = (href: string) => {
 		}
 
 		.socials {
+			display: none;
+		}
+
+		.desktop-theme-toggle {
+			display: block;
+			position: absolute;
+			right: 2rem;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.theme-toggle {
 			display: none;
 		}
 	}
