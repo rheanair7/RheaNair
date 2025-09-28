@@ -1,7 +1,7 @@
 ---
 title: Question Answering with Transformers
 publishDate: 2025-06-15 00:00:00
-img: /assets/stock-1.png
+img: ./assets/stock-1.png
 img_alt: Code editor with transformer model diagram overlay
 description: |
   Interactive QA system on custom context using deepset/roberta-base-squad2; deployed on AWS with CUDA optimization.

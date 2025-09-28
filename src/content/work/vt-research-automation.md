@@ -1,7 +1,7 @@
 ---
 title: Research Workflow Automation (Virginia Tech)
 publishDate: 2024-06-15 00:00:00
-img: /assets/stock-4.png
+img: ./assets/stock-4.png
 img_alt: Documents and charts illustrating automated workflows
 description: |
   Automated academic paper parsing & classification; reduced review cycle from ~14 days to ~2 days with Python workflows.

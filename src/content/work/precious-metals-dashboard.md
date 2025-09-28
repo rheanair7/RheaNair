@@ -1,7 +1,7 @@
 ---
 title: Precious Metal Prices Dashboard
 publishDate: 2022-07-15 00:00:00
-img: /assets/stock-6.png
+img: ./assets/stock-6.png
 img_alt: Time series line charts in a dark UI
 description: |
   Dash + Plotly app to explore daily prices for Gold, Silver, Platinum, Palladium (2018–2021) with filters and date picker.

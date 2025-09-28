@@ -1,7 +1,7 @@
 ---
 title: Multi‑Agent RL with Neuro Evolution (TIFR)
 publishDate: 2023-11-01 00:00:00
-img: /assets/stock-5.png
+img: ./assets/stock-5.png
 img_alt: RL agents in a simulated environment diagram
 description: |
   Neuro Evolution‑based multi‑agent RL in PyTorch; 85% training efficiency improvement with distributed preprocessing.

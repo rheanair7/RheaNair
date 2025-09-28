@@ -1,7 +1,7 @@
 ---
 title: Online Retail Customer Intelligence Study
 publishDate: 2025-03-01 00:00:00
-img: /assets/stock-3.png
+img: ./assets/stock-3.png
 img_alt: Dashboard preview showing retail KPIs and charts
 description: |
   Segmentation, association rules, and Holt–Winters forecasting on the UCI Online Retail II dataset with Tableau dashboards.

@@ -1,7 +1,7 @@
 ---
 title: NLP for Customer Support
 publishDate: 2025-07-10 00:00:00
-img: /assets/stock-2.png
+img: ./assets/stock-2.png
 
 img_alt: Conversation bubbles overlaid on charts
 
