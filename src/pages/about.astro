@@ -1,49 +1,52 @@
 ---
-import MainHead from '../components/MainHead.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import EducationTimeline from '../components/educationtimeline.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<MainHead title="About | Rhea Nair" description="About Rhea Nair" />
-	</head>
-	<body>
-		<div class="stack gap-20">
-			<main class="wrapper about">
-				<header>
-					<h1>About</h1>
-					<p>Thanks for stopping by. Read below to learn more about myself and my background.</p>
-					<img
-						width="1553"
-						height="873"
-						src="/assets/potrait.jpg"
-						alt="Rhea Nair portrait"
-					/>
-				</header>
+<BaseLayout title="About | Rhea Nair" description="About Rhea Nair">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="About"
+				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+			>
+				<img
+					width="1553"
+					height="873"
+					src="/assets/potrait.jpg"
+					alt="Jeanine White at work with a colleague"
+				/>
+			</Hero>
 
-				<section>
-					<h2 class="section-title">Background</h2>
-					<div class="content">
-						<p>
-							work in progress.
-						</p>
-					</div>
-				</section>
-			
+			<section>
+				<h2 class="section-title">Background</h2>
+				<div class="content">
+					<p>
+						work in progress.
+					</p>
+					<p>
+						
+					</p>
+					<p>
+					</p>
+				</div>
+			</section>
+		
 				<section>
 					<h2 class="section-title">Education</h2>
 					<EducationTimeline />
 				</section>
+			<section>
+				<h2 class="section-title">Skills</h2>
+				
+			</section>
+		</main>
 
-				<section>
-					<h2 class="section-title">Skills</h2>
-					<p>Skills section coming soon...</p>
-				</section>
-			</main>
-		</div>
-	</body>
-</html>
+		<ContactCTA />
+	</div>
+</BaseLayout>
 
 <style>
 	.about {
