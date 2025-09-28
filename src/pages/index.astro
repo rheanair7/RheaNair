@@ -239,17 +239,17 @@ const newsItems = (await getCollection('news'))
 	.news-timeline {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
-		max-width: 900px;
-		margin: 0 auto;
+		gap: 1.2rem;
+		max-width: 1000px;
+		margin: 0;
+		padding: 0;
 	}
 
 	.news-item {
-		display: grid;
-		grid-template-columns: 100px 1fr;
-		gap: 1.5rem;
+		display: flex;
+		gap: 1.2rem;
 		align-items: start;
-		padding: 1rem 0;
+		padding: 0.8rem 0;
 		border-bottom: 1px solid var(--gray-800);
 	}
 
@@ -261,13 +261,15 @@ const newsItems = (await getCollection('news'))
 		font-size: var(--text-sm);
 		font-weight: 600;
 		color: var(--gray-400);
+		min-width: 90px;
+		flex-shrink: 0;
 		text-align: left;
-		white-space: nowrap;
 	}
 
 	.news-content {
 		color: var(--gray-200);
-		line-height: 1.6;
+		line-height: 1.5;
+		flex: 1;
 	}
 
 	.news-content p {
@@ -291,25 +293,26 @@ const newsItems = (await getCollection('news'))
 	}
 
 	@media (min-width: 50em) {
-		.news-item {
-			grid-template-columns: 120px 1fr;
-			gap: 2rem;
-			padding: 1.5rem 0;
-		}
-
 		.news-date {
+			min-width: 100px;
 			font-size: var(--text-base);
+		}
+		
+		.news-item {
+			gap: 1.5rem;
+			padding: 1rem 0;
 		}
 	}
 
 	@media (max-width: 50em) {
 		.news-item {
-			grid-template-columns: 1fr;
-			gap: 0.5rem;
+			flex-direction: column;
+			gap: 0.3rem;
 		}
 
 		.news-date {
 			font-size: var(--text-xs);
+			min-width: auto;
 		}
 	}
 </style>
