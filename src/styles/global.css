@@ -1,6 +1,7 @@
-/* Global variables */
-:root {
-    /* Colors */
+/*
+Global variables */
+/* :root {
+    /* Colors *//*
     --gray-0: #090b11;
     --gray-50: #141925;
     --gray-100: #283044;
@@ -25,7 +26,7 @@
 
     --link-color: var(--accent-regular);
 
-    /* Gradients */
+    /* Gradients *//*
     --gradient-stop-1: var(--accent-light);
     --gradient-stop-2: var(--accent-regular);
     --gradient-stop-3: var(--accent-dark);
@@ -44,14 +45,14 @@
     );
     --gradient-stroke: linear-gradient(180deg, var(--gray-900), var(--gray-700));
 
-    /* Background Images */
+    /* Background Images *//*
     --bg-image-subtle-1: url("/RheaNair/backgrounds/bg-subtle-1-light-1440w.jpg");
     --bg-image-subtle-2: url("/RheaNair/backgrounds/bg-subtle-2-light-1440w.jpg");
     --bg-gradient-size: 400px 300px;
     --bg-scale: 1;
     --bg-blend-mode: overlay;
 
-    /* Shadows */
+    /* Shadows *//*
     --shadow-sm:
         0px 6px 3px rgba(9, 11, 17, 0.01), 0px 4px 2px rgba(9, 11, 17, 0.01),
         0px 2px 2px rgba(9, 11, 17, 0.02), 0px 0px 1px rgba(9, 11, 17, 0.03);
@@ -62,7 +63,7 @@
         0px 62px 25px rgba(9, 11, 17, 0.01), 0px 35px 21px rgba(9, 11, 17, 0.05),
         0px 16px 16px rgba(9, 11, 17, 0.1), 0px 4px 9px rgba(9, 11, 17, 0.12);
 
-    /* Text Sizes */
+    /* Text Sizes *//*
     --text-sm: 0.875rem;
     --text-base: 1rem;
     --text-md: 1.125rem;
@@ -73,14 +74,14 @@
     --text-4xl: 3.5rem;
     --text-5xl: 4.5rem;
 
-    /* Fonts */
+    /* Fonts *//*
     --font-system:
         system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
         "Open Sans", "Helvetica Neue", sans-serif;
     --font-body: "Public Sans", var(--font-system);
     --font-brand: Rubik, var(--font-system);
 
-    /* Transitions */
+    /* Transitions *//*
     --theme-transition: 0.2s ease-in-out;
 }
 
@@ -118,7 +119,7 @@
     );
     --gradient-stroke: linear-gradient(180deg, var(--gray-600), var(--gray-800));
 
-    /* Background Images */
+    /* Background Images *//*
     --bg-image-subtle-1: url("/RheaNair/backgrounds/bg-subtle-1-dark-1440w.jpg");
     --bg-image-subtle-2: url("/RheaNair/backgrounds/bg-subtle-2-dark-1440w.jpg");
     --bg-gradient-size: 400px 300px;
@@ -197,7 +198,7 @@ h5 {
     font-size: var(--text-xl);
 }
 
-/* Utilities */
+/* Utilities *//*
 
 .sr-only {
     position: absolute;
@@ -273,4 +274,212 @@ h5 {
     .lg\:gap-48 {
         gap: 12rem;
     }
+}
+*/
+
+/* Global variables */
+:root {
+    /* --- NEW PROFESSIONAL COLORS (Slate & Blue) --- */
+    /* Text is now Dark Navy (#0f172a) so it won't vanish on light backgrounds */
+    --gray-0: #0f172a;
+    --gray-50: #1e293b;
+    --gray-100: #334155;
+    --gray-200: #475569; /* Primary text color */
+    --gray-300: #64748b;
+    --gray-400: #94a3b8;
+    --gray-500: #cbd5e1;
+    --gray-600: #e2e8f0;
+    --gray-700: #f1f5f9;
+    --gray-800: #f8fafc;
+    --gray-900: #ffffff; /* Backgrounds are now clean white/off-white */
+    
+    --gray-999-basis: 0, 0%, 100%;
+    --gray-999_40: hsla(var(--gray-999-basis), 0.4);
+    --gray-999: #ffffff;
+
+    /* --- ACCENT COLORS (Blue instead of Purple) --- */
+    --accent-light: #bae6fd;    /* Soft Sky Blue */
+    --accent-regular: #0ea5e9;  /* Professional Data Science Blue */
+    --accent-dark: #0369a1;     /* Deep Ocean Blue */
+    
+    --accent-overlay: hsla(200, 98%, 39%, 0.33);
+    --accent-subtle-overlay: var(--accent-overlay);
+    --accent-text-over: #ffffff;
+
+    --link-color: var(--accent-regular);
+
+    /* --- GRADIENTS (Clean Blue, No Purple) --- */
+    --gradient-stop-1: #e0f2fe;
+    --gradient-stop-2: #0ea5e9;
+    --gradient-stop-3: #0284c7;
+    
+    --gradient-subtle: linear-gradient(150deg, #f8fafc 19%, #ffffff 150%);
+    
+    --gradient-accent: linear-gradient(
+        150deg,
+        var(--gradient-stop-1),
+        var(--gradient-stop-2),
+        var(--gradient-stop-3)
+    );
+    
+    /* Removed the orange gradient to keep it professional */
+    --gradient-accent-orange: var(--gradient-accent);
+    
+    --gradient-stroke: linear-gradient(180deg, var(--gray-600), var(--gray-800));
+
+    /* --- BACKGROUND IMAGES --- */
+    --bg-image-subtle-1: url("/RheaNair/backgrounds/bg-main-light.jpg");
+    --bg-image-subtle-2: url("/RheaNair/backgrounds/bg-main-light.jpg");
+    
+    --bg-gradient-size: cover;
+    --bg-scale: 1;
+    --bg-blend-mode: normal; /* Changed from overlay to normal so text is clear */
+
+    /* Shadows */
+    --shadow-sm: 0px 6px 3px rgba(9, 11, 17, 0.01), 0px 4px 2px rgba(9, 11, 17, 0.01), 0px 2px 2px rgba(9, 11, 17, 0.02);
+    --shadow-md: 0px 28px 11px rgba(9, 11, 17, 0.01), 0px 16px 10px rgba(9, 11, 17, 0.03);
+    --shadow-lg: 0px 62px 25px rgba(9, 11, 17, 0.01), 0px 35px 21px rgba(9, 11, 17, 0.05);
+
+    /* Text Sizes */
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-md: 1.125rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.625rem;
+    --text-2xl: 2.125rem;
+    --text-3xl: 2.625rem;
+    --text-4xl: 3.5rem;
+    --text-5xl: 4.5rem;
+
+    /* Fonts */
+    --font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    --font-body: "Public Sans", var(--font-system);
+    --font-brand: Rubik, var(--font-system);
+
+    --theme-transition: 0.2s ease-in-out;
+}
+
+/* --- DARK MODE OVERRIDES (Optional, adjusted to match Navy theme) --- */
+:root.theme-dark {
+    --gray-0: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #6474a2;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+    --gray-999-basis: 225, 31%, 5%;
+    --gray-999: #020617; /* Very dark navy */
+
+    /* Dark purple/navy accent colors matching the image */
+    --accent-light: #9ca3af;    /* Light Gray for icons */
+    --accent-regular: #2a1a4a;  /* Dark Purple/Navy for pills */
+    --accent-dark: #1e1333;     /* Very Dark Purple */
+    --accent-overlay: hsla(260, 45%, 20%, 0.33);
+    --accent-subtle-overlay: hsla(260, 45%, 20%, 0.1);
+    --accent-text-over: #ffffff;
+
+    --link-color: #a78bfa;
+
+    /* Solid dark purple for pills */
+    --gradient-stop-1: #2a1a4a;
+    --gradient-stop-2: #2a1a4a;
+    --gradient-stop-3: #2a1a4a;
+    --gradient-accent: #2a1a4a;
+    --gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 81%);
+}
+
+html, body {
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--gray-999);
+    /* Sets the background image globally */
+    background-image: var(--bg-image-subtle-1); 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    
+    color: var(--gray-200);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--link-color);
+}
+
+h1, h2, h3, h4, h5 {
+    line-height: 1.1;
+    font-family: var(--font-brand);
+    font-weight: 600;
+    color: var(--gray-0); /* Ensures headings are dark and readable */
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+
+/* Utilities */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 83rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+}
+
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+.gap-8 { gap: 2rem; }
+.gap-10 { gap: 2.5rem; }
+.gap-15 { gap: 3.75rem; }
+.gap-20 { gap: 5rem; }
+.gap-30 { gap: 7.5rem; }
+.gap-48 { gap: 12rem; }
+
+@media (min-width: 50em) {
+    .lg\:gap-2 { gap: 0.5rem; }
+    .lg\:gap-4 { gap: 1rem; }
+    .lg\:gap-8 { gap: 2rem; }
+    .lg\:gap-10 { gap: 2.5rem; }
+    .lg\:gap-15 { gap: 3.75rem; }
+    .lg\:gap-20 { gap: 5rem; }
+    .lg\:gap-30 { gap: 7.5rem; }
+    .lg\:gap-48 { gap: 12rem; }
 }

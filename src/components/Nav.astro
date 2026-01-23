@@ -1,7 +1,6 @@
 ---
 import Icon from './Icon.astro';
 import type { iconPaths } from './IconPaths';
-import ThemeToggle from './ThemeToggle.astro';
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
@@ -44,9 +43,6 @@ const isCurrentPage = (href: string) => {
 				</button>
 			</template>
 		</menu-button>
-	</div>
-	<div class="desktop-theme-toggle">
-		<ThemeToggle />
 	</div>
 	<noscript>
 		<ul class="nav-items">
@@ -97,10 +93,6 @@ const isCurrentPage = (href: string) => {
 						</a>
 					))
 				}
-			</div>
-
-			<div class="theme-toggle">
-				<ThemeToggle />
 			</div>
 		</div>
 	</div>
@@ -253,29 +245,13 @@ const isCurrentPage = (href: string) => {
 		display: flex;
 		padding: var(--icon-padding);
 		text-decoration: none;
-		color: var(--accent-dark);
+		color: #d1d5db;
 		transition: color var(--theme-transition);
 	}
 
 	.social:hover,
 	.social:focus {
-		color: var(--accent-text-over);
-	}
-
-	.theme-toggle {
-		display: flex;
-		align-items: center;
-		height: calc(var(--icon-size) + 2 * var(--icon-padding));
-	}
-
-	.desktop-theme-toggle {
-		display: none;
-	}
-
-	.theme-toggle {
-		margin-top: 1rem;
-		padding-top: 1rem;
-		border-top: 1px solid var(--gray-800);
+		color: #ffffff;
 	}
 
 	@media (min-width: 50em) {
@@ -351,18 +327,6 @@ const isCurrentPage = (href: string) => {
 		.socials {
 			display: none;
 		}
-
-		.desktop-theme-toggle {
-			display: block;
-			position: absolute;
-			right: 1rem;
-			top: 50%;
-			transform: translateY(-50%);
-		}
-
-		.theme-toggle {
-			display: none;
-		}
 	}
 
 	@media (min-width: 60em) {
@@ -370,11 +334,6 @@ const isCurrentPage = (href: string) => {
 			display: flex;
 			justify-content: flex-end;
 			gap: 0;
-			margin-right: 4rem; /* Add space for theme toggle */
-		}
-
-		.desktop-theme-toggle {
-			right: 1rem; /* Keep theme toggle close to edge */
 		}
 	}
 	@media (forced-colors: active) {

@@ -76,7 +76,7 @@ const education = entries
 /* ========= easy theme knobs ========= */
 :root{
   --accent-1:#6366f1; --accent-2:#a78bfa; --accent-3:#4f46e5;
-  --card-bg:rgba(255,255,255,.9); --card-bg-dark:rgba(10,14,22,.6);
+  --card-bg:rgba(255,255,255,.9); --card-bg-dark:rgba(240, 240, 245, 0.95);
 }
 
 /* timeline is now a simple block; each .row is a real grid row */
@@ -139,10 +139,10 @@ const education = entries
 .card.right { grid-column:3; justify-self:start; max-width:520px; }
 
 /* typography */
-.degree{ margin:0 0 .25rem; font-weight:800; font-size:clamp(1.05rem,1.2vw + .8rem,1.4rem); color:var(--gray-0,#0f172a); }
-.school{ font-size:.95rem; color:var(--gray-300,#475569); }
-.dates{ margin-top:.15rem; font-size:.82rem; color:var(--accent-3); font-weight:600; letter-spacing:.02em; }
-.details{ margin-top:.4rem; font-size:.9rem; color:var(--gray-200,#334155); }
+.degree{ margin:0 0 .25rem; font-weight:800; font-size:clamp(1.05rem,1.2vw + .8rem,1.4rem); color:#1a1a1a; }
+.school{ font-size:.95rem; color:#3a3a3a; }
+.dates{ margin-top:.15rem; font-size:.82rem; color:#5b21b6; font-weight:700; letter-spacing:.02em; }
+.details{ margin-top:.4rem; font-size:.9rem; color:#2a2a2a; }
 
 /* reveal states (unchanged) */
 .reveal{ opacity:0; }
@@ -162,9 +162,11 @@ const education = entries
 }
 
 /* dark mode */
-:global(html.dark) .card{ background:var(--card-bg-dark); border-color:rgba(255,255,255,.06); color:#e5e7eb; }
-:global(html.dark) .details{ color:#cbd5e1; }
-:global(html.dark) .school { color:#a3aec2; }
+:global(html.dark) .card{ background:var(--card-bg-dark); border-color:rgba(100,100,120,.3); color:#1a1a1a; }
+:global(html.dark) .details{ color:#2a2a2a; }
+:global(html.dark) .school { color:#3a3a3a; }
+:global(html.dark) .degree { color:#1a1a1a; }
+:global(html.dark) .dates { color:#5b21b6; }
 </style>
 
 
@@ -246,7 +248,7 @@ const education = entries
 /* ========= easy theme knobs ========= */
 :root{
   --accent-1:#6366f1; --accent-2:#a78bfa; --accent-3:#4f46e5;
-  --card-bg:rgba(255,255,255,.9); --card-bg-dark:rgba(10,14,22,.6);
+  --card-bg:rgba(255,255,255,.9); --card-bg-dark:rgba(240, 240, 245, 0.95);
 }
 
 /* timeline is now a simple block; each .row is a real grid row */
@@ -309,10 +311,10 @@ const education = entries
 .card.right { grid-column:3; justify-self:start; max-width:520px; }
 
 /* typography */
-.degree{ margin:0 0 .25rem; font-weight:800; font-size:clamp(1.05rem,1.2vw + .8rem,1.4rem); color:var(--gray-0,#0f172a); }
-.school{ font-size:.95rem; color:var(--gray-300,#475569); }
-.dates{ margin-top:.15rem; font-size:.82rem; color:var(--accent-3); font-weight:600; letter-spacing:.02em; }
-.details{ margin-top:.4rem; font-size:.9rem; color:var(--gray-200,#334155); }
+.degree{ margin:0 0 .25rem; font-weight:800; font-size:clamp(1.05rem,1.2vw + .8rem,1.4rem); color:#1a1a1a; }
+.school{ font-size:.95rem; color:#3a3a3a; }
+.dates{ margin-top:.15rem; font-size:.82rem; color:#5b21b6; font-weight:700; letter-spacing:.02em; }
+.details{ margin-top:.4rem; font-size:.9rem; color:#2a2a2a; }
 
 /* reveal states (unchanged) */
 .reveal{ opacity:0; }
@@ -332,7 +334,9 @@ const education = entries
 }
 
 /* dark mode */
-:global(html.dark) .card{ background:var(--card-bg-dark); border-color:rgba(255,255,255,.06); color:#e5e7eb; }
-:global(html.dark) .details{ color:#cbd5e1; }
-:global(html.dark) .school { color:#a3aec2; }
+:global(html.dark) .card{ background:var(--card-bg-dark); border-color:rgba(100,100,120,.3); color:#1a1a1a; }
+:global(html.dark) .details{ color:#2a2a2a; }
+:global(html.dark) .school { color:#3a3a3a; }
+:global(html.dark) .degree { color:#1a1a1a; }
+:global(html.dark) .dates { color:#5b21b6; }
 </style> -->
