@@ -1,0 +1,43 @@
+---
+interface Props {
+	name: string;
+	icon?: string;
+}
+
+const { name, icon } = Astro.props;
+---
+
+<div class="tech-badge">
+	{icon && <span class="icon">{icon}</span>}
+	<span class="name">{name}</span>
+</div>
+
+<style>
+.tech-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: var(--gray-999);
+	border: 1px solid var(--gray-800);
+	border-radius: 999px;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--gray-200);
+	transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+	background: var(--gray-900);
+	border-color: var(--gray-700);
+}
+
+.icon {
+	font-size: 1.125rem;
+	line-height: 1;
+}
+
+.name {
+	line-height: 1;
+}
+</style>

@@ -40,7 +40,111 @@ import EducationTimeline from '../components/educationtimeline.astro';
 				</section>
 			<section>
 				<h2 class="section-title">Skills</h2>
-				
+				<div class="content">
+					<div class="skills-grid">
+						<div class="skill-category">
+							<h3>Languages & Frameworks</h3>
+							<ul>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Python`}>Python</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=JavaScript`}>JavaScript</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=SQL`}>SQL</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=HTML5`}>HTML5 & CSS3</a></li>
+							</ul>
+						</div>
+
+						<div class="skill-category">
+							<h3>Machine Learning & AI</h3>
+							<ul>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=PyTorch`}>PyTorch</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Transformers`}>Transformers / Hugging Face</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=BERT`}>BERT, RoBERTa, BERTopic</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=XGBoost`}>XGBoost</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Scikit-learn`}>Scikit-learn</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Sentence-Transformers`}>Sentence-Transformers</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=spaCy`}>spaCy</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Demucs`}>Demucs (Audio ML)</a></li>
+							</ul>
+						</div>
+
+						<div class="skill-category">
+							<h3>Data Science & Analytics</h3>
+							<ul>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Pandas`}>Pandas & NumPy</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Matplotlib`}>Matplotlib & Seaborn</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Tableau`}>Tableau</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Statistical Analysis</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Time Series Forecasting</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>RFM Analysis</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Association Rules (Apriori)</a></li>
+							</ul>
+						</div>
+
+						<div class="skill-category">
+							<h3>Backend & APIs</h3>
+							<ul>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Flask`}>Flask</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=FastAPI`}>FastAPI</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>REST APIs</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Microservices Architecture</a></li>
+							</ul>
+						</div>
+
+						<div class="skill-category">
+							<h3>Cloud & DevOps</h3>
+							<ul>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Google Cloud`}>Google Cloud Platform (GCP)</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=AWS`}>AWS (EC2, S3)</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Kubernetes`}>Kubernetes</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Docker`}>Docker</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Cloud Run</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Compute Engine</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Cloud SQL</a></li>
+							</ul>
+						</div>
+
+						<div class="skill-category">
+							<h3>Databases & Storage</h3>
+							<ul>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=PostgreSQL`}>PostgreSQL</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=MongoDB`}>MongoDB</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Redis`}>Redis</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=MinIO`}>MinIO (S3-compatible)</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=NoSQL`}>NoSQL</a></li>
+							</ul>
+						</div>
+
+						<div class="skill-category">
+							<h3>Big Data & Distributed Systems</h3>
+							<ul>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Hadoop`}>Apache Hadoop</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=Spark`}>Apache Spark</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Distributed Processing</a></li>
+							</ul>
+						</div>
+
+						<div class="skill-category">
+							<h3>Web & Frontend</h3>
+							<ul>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=React`}>React</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=HTML5`}>HTML5 & CSS3</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Google Maps API</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Responsive Design</a></li>
+							</ul>
+						</div>
+
+						<div class="skill-category">
+							<h3>Specialized Tools</h3>
+							<ul>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>GTFS & RAPTOR (Transit Routing)</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=OSMnx`}>OSMnx (Geospatial)</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=NetworkX`}>NetworkX (Graph Analysis)</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work?skill=BeautifulSoup`}>BeautifulSoup (Web Scraping)</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Google Colab</a></li>
+								<li><a href={`${import.meta.env.BASE_URL}work`}>Git & Version Control</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</section>
 		</main>
 
@@ -89,6 +193,67 @@ import EducationTimeline from '../components/educationtimeline.astro';
 		text-decoration-color: currentColor;
 	}
 
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+		margin-top: 1rem;
+	}
+
+	.skill-category h3 {
+		color: var(--gray-0);
+		font-size: var(--text-xl);
+		font-weight: 700;
+		margin-bottom: 1rem;
+		border-bottom: 3px solid var(--accent-regular);
+		padding-bottom: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.skill-category ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.skill-category li {
+		position: relative;
+		margin-bottom: 0.75rem;
+		line-height: 1.6;
+		font-size: var(--text-md);
+	}
+
+	.skill-category li a {
+		display: block;
+		padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+		color: var(--gray-200);
+		text-decoration: none;
+		transition: all 0.2s ease;
+		border-radius: 0.25rem;
+	}
+
+	.skill-category li a:hover {
+		color: var(--accent-regular);
+		background: var(--gray-900);
+		transform: translateX(4px);
+	}
+
+	.skill-category li::before {
+		content: '▹';
+		position: absolute;
+		left: 0.25rem;
+		top: 0.5rem;
+		color: var(--accent-regular);
+		font-size: 1.2rem;
+		transition: transform 0.2s ease;
+		pointer-events: none;
+	}
+
+	.skill-category li:hover::before {
+		transform: translateX(3px);
+	}
+
 	@media (min-width: 50em) {
 		.about {
 			display: grid;
@@ -102,6 +267,10 @@ import EducationTimeline from '../components/educationtimeline.astro';
 		section {
 			display: contents;
 			font-size: var(--text-lg);
+		}
+
+		.skills-grid {
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 </style>

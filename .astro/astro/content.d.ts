@@ -178,6 +178,20 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "work": {
+"boulder-move.md": {
+	id: "boulder-move.md";
+  slug: "boulder-move";
+  body: string;
+  collection: "work";
+  data: any
+} & { render(): Render[".md"] };
+"music-separation-service.md": {
+	id: "music-separation-service.md";
+  slug: "music-separation-service";
+  body: string;
+  collection: "work";
+  data: any
+} & { render(): Render[".md"] };
 "nlp-customer-support.md": {
 	id: "nlp-customer-support.md";
   slug: "nlp-customer-support";
@@ -188,13 +202,6 @@ declare module 'astro:content' {
 "online-retail-intelligence.md": {
 	id: "online-retail-intelligence.md";
   slug: "online-retail-intelligence";
-  body: string;
-  collection: "work";
-  data: any
-} & { render(): Render[".md"] };
-"precious-metals-dashboard.md": {
-	id: "precious-metals-dashboard.md";
-  slug: "precious-metals-dashboard";
   body: string;
   collection: "work";
   data: any

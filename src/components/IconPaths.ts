@@ -37,4 +37,5 @@ export const iconPaths = {
 	'tiktok-logo': `<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M168 106a96 96 0 0 0 56 18V84a56 56 0 0 1-56-56h-40v128a28 28 0 1 1-40-25V89a68 68 0 1 0 80 67Z"/>`,
 	 'email': `<rect x="32" y="64" width="192" height="128" rx="8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
           <polyline fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" points="32 64 128 144 224 64"/>`,
+	'external-link': `<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 104v112a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V48a8 8 0 0 1 8-8h112"/><polyline fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" points="144 32 224 32 224 112"/><line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" x1="152" x2="224" y1="104" y2="32"/>`,
 };
