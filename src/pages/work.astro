@@ -1,28 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import ContactCTA from '../components/ContactCTA.astro';
-import Grid from '../components/Grid.astro';
-import Hero from '../components/Hero.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Get all projects and sort by date
-const allProjects = (await getCollection('work')).sort(
+const projects = (await getCollection('work')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
 );
-
-// Get the skill filter from URL query parameter
-const url = new URL(Astro.request.url);
-const skillFilter = url.searchParams.get('skill');
-
-// Filter projects based on skill if provided
-const projects = skillFilter
-  ? allProjects.filter((project) => {
-      return project.data.technologies?.some(
-        (tech: any) => tech.name.toLowerCase() === skillFilter.toLowerCase()
-      );
-    })
-  : allProjects;
 ---
 
 <BaseLayout title="Work">
@@ -34,24 +16,6 @@ const projects = skillFilter
             Selected projects and experiments.
           </p>
         </Hero>
-
-        {skillFilter && (
-          <div class="filter-indicator">
-            <span class="filter-text">
-              Showing projects using: <strong>{skillFilter}</strong>
-            </span>
-            <a href={`${import.meta.env.BASE_URL}work`} class="clear-filter">
-              Clear filter ×
-            </a>
-          </div>
-        )}
-
-        {skillFilter && projects.length === 0 && (
-          <div class="no-results">
-            <p>No projects found using {skillFilter}.</p>
-            <a href={`${import.meta.env.BASE_URL}work`}>View all projects</a>
-          </div>
-        )}
       </div>
     </header>
 
@@ -65,89 +29,4 @@ const projects = skillFilter
       </Grid>
     </main>
 
-    <ContactCTA />
-  </div>
 </BaseLayout>
-
-<style>
-  .filter-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    padding: 1rem 1.5rem;
-    background: var(--gradient-subtle);
-    border: 1px solid var(--accent-regular);
-    border-radius: 0.5rem;
-    animation: slideIn 0.3s ease;
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .filter-text {
-    color: var(--gray-200);
-    font-size: var(--text-md);
-  }
-
-  .filter-text strong {
-    color: var(--accent-regular);
-    font-weight: 600;
-  }
-
-  .clear-filter {
-    color: var(--accent-regular);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    background: var(--gray-999);
-    border-radius: 0.25rem;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .clear-filter:hover {
-    background: var(--gray-800);
-    transform: scale(1.05);
-  }
-
-  .no-results {
-    margin-top: 2rem;
-    padding: 2rem;
-    text-align: center;
-    background: var(--gray-999);
-    border-radius: 0.5rem;
-    border: 1px solid var(--gray-800);
-  }
-
-  .no-results p {
-    color: var(--gray-300);
-    font-size: var(--text-lg);
-    margin-bottom: 1rem;
-  }
-
-  .no-results a {
-    color: var(--accent-regular);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.75rem 1.5rem;
-    background: var(--gradient-accent-orange);
-    border-radius: 0.5rem;
-    display: inline-block;
-    transition: all 0.2s ease;
-  }
-
-  .no-results a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-</style>

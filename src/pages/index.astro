@@ -1,29 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
-// Component Imports
-import CallToAction from '../components/CallToAction.astro';
-// Page section components
-import ContactCTA from '../components/ContactCTA.astro';
-import Grid from '../components/Grid.astro';
-import Hero from '../components/Hero.astro';
-import Icon from '../components/Icon.astro';
-import Pill from '../components/Pill.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
-// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Content Fetching: List four most recent work projects
+const base = import.meta.env.BASE_URL;
+
 const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-	.slice(0, 4);
+	.slice(0, 6);
 
-// Content Fetching: List recent news and accomplishments  
 const newsItems = (await getCollection('news'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-	.slice(0, 5);
+	.slice(0, 8);
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+const badgeClass: Record<string, string> = {
+	Research:    'badge-research',
+	Work:        'badge-work',
+	Education:   'badge-school',
+	Publication: 'badge-research',
+	Award:       'badge-work',
+	Speaking:    'badge-school',
+};
 ---
 
 <BaseLayout>
@@ -35,6 +31,17 @@ const newsItems = (await getCollection('news'))
 					tagline="I am a Data Scientist who is currently based in Boulder, Colorado."
 					align="start"
 				>
+					<div class="roles">
+						<CallToAction href={import.meta.env.BASE_URL + "about/"} class="role-pill">
+							<Icon icon="code" size="0.9em" /> Developer
+						</CallToAction>
+						<CallToAction href={import.meta.env.BASE_URL + "about/"} class="role-pill">
+							<Icon icon="microphone-stage" size="0.9em" /> Speaker
+						</CallToAction>
+						<CallToAction href={import.meta.env.BASE_URL + "about/"} class="role-pill">
+							<Icon icon="pencil-line" size="0.9em" /> Writer
+						</CallToAction>
+					</div>
 				</Hero>
 
 				<img
@@ -66,339 +73,431 @@ const newsItems = (await getCollection('news'))
 						}
 					</Grid>
 				</div>
-
-				<div class="cta">
-					<CallToAction href={import.meta.env.BASE_URL + "work/"}>
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
+				<div class="avail">
+					<span class="avail-dot"></span>
+					<span>Open to full-time · Bay Area / Remote</span>
 				</div>
-			</section>
+			</div>
+		</div>
+	</section>
 
-			<section class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Latest News & Accomplishments</h3>
-					<p>
-						Stay updated with my recent achievements, publications, speaking engagements, and 
-						professional milestones in data science and technology.
-					</p>
-				</header>
-
-				<div class="news-gallery">
-					<div class="news-timeline">
-						{
-							newsItems.map((newsItem) => (
-								<article class="news-item">
-									<time class="news-date">
-										{newsItem.data.publishDate.toLocaleDateString('en-US', {
-											year: 'numeric',
-											month: 'short',
-											day: '2-digit'
-										})}
-									</time>
-									<div class="news-content">
-										<p class="news-description" set:html={newsItem.data.description} />
-									</div>
-								</article>
-							))
-						}
-					</div>
-				</div>
-			</section>
-		</main>
-
-		<ContactCTA />
+	<!-- ── TICKER ────────────────────────────────────────── -->
+	<div class="ticker-wrap" aria-hidden="true">
+		<div class="ticker-inner">
+			{['PyTorch','·','Computer Vision','·','Transformers','·','SQL / ETL','·',
+			  'Kubernetes','·','HuggingFace','·','Grad-CAM','·','FastAPI','·',
+			  'Apache Superset','·','XGBoost','·','DigitalOcean','·','React','·',
+			  'PyTorch','·','Computer Vision','·','Transformers','·','SQL / ETL','·',
+			  'Kubernetes','·','HuggingFace','·','Grad-CAM','·','FastAPI','·',
+			  'Apache Superset','·','XGBoost','·','DigitalOcean','·','React','·',
+			].map((item) => (
+				<span class:list={['ti', { accent: item !== '·' && Math.random() > 0.6 }]}>
+					{item}
+				</span>
+			))}
+		</div>
 	</div>
+
+	<main class="main-body">
+
+		<!-- ── WORK BENTO ─────────────────────────────────── -->
+		<p class="section-label">SELECTED WORK</p>
+		<div class="bento">
+			{projects.map((project) => (
+				<a
+					href={`${base}work/${project.id.replace(/\.md$/, '')}/`}
+					class="bento-card"
+				>
+					<p class="card-title">{project.data.title}</p>
+					<p class="card-desc">{project.data.description}</p>
+					<div class="card-pills">
+						{project.data.tags.map(tag => (
+							<span class="card-pill">{tag}</span>
+						))}
+					</div>
+					<span class="card-arrow">↗</span>
+				</a>
+			))}
+		</div>
+
+		<!-- ── RECENT ─────────────────────────────────────── -->
+		<p class="section-label" style="margin-top:2.5rem">RECENT NEWS</p>
+		<div class="news-grid">
+			{newsItems.map(item => (
+				<div class="news-card">
+					<div class="news-meta">
+						<time class="news-date">
+							{item.data.publishDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+						</time>
+						<span class:list={['news-badge', badgeClass[item.data.category] ?? 'badge-work']}>
+							{item.data.category}
+						</span>
+					</div>
+					<p class="news-text" set:html={item.data.description} />
+				</div>
+			))}
+		</div>
+
+		<!-- ── EXPERIENCE ──────────────────────────────────── -->
+		<p class="section-label" style="margin-top:2.5rem">EXPERIENCE</p>
+		<div class="exp-grid">
+			<div class="exp-card">
+				<p class="exp-date">2025 — NOW</p>
+				<p class="exp-org">Ascend Cargo Systems</p>
+				<p class="exp-role">Data Analytics Engineering Intern</p>
+			</div>
+			<div class="exp-card">
+				<p class="exp-date">2024 — 2025</p>
+				<p class="exp-org">Virginia Tech</p>
+				<p class="exp-role">NLP Research Assistant</p>
+			</div>
+			<div class="exp-card">
+				<p class="exp-date">2022 — 2023</p>
+				<p class="exp-org">TIFR Mumbai</p>
+				<p class="exp-role">Multi-Agent RL Research Intern</p>
+			</div>
+		</div>
+
+	</main>
 </BaseLayout>
 
 <style>
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-	}
+/* ── HERO ──────────────────────────────────────────────── */
+.hero {
+	padding: 2.5rem 3rem;
+	border-bottom: 1px solid var(--border-color);
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	overflow: visible;
+}
 
-	.roles {
-		display: none;
-	}
+.hero-name-block {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
 
-	.hero img {
-		aspect-ratio: 5 / 4;
-		object-fit: cover;
-		object-position: top;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
+.eyebrow {
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 2.5px;
+	color: var(--gray-400);
+}
 
-	@media (min-width: 50em) {
-		.hero {
-			display: grid;
-			grid-template-columns: 6fr 4fr;
-			padding-inline: 2.5rem;
-			gap: 3.75rem;
-		}
+.hero-name {
+	font-size: clamp(3rem, 6vw, 5rem);
+	font-weight: 500;
+	color: var(--gray-0);
+	letter-spacing: -0.04em;
+	line-height: 0.9;
+}
 
-		.roles {
-			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
-		}
+.accent { color: var(--accent); }
 
-		.hero img {
-			aspect-ratio: 5/ 4;
-			border-radius: 4.5rem;
-			object-fit: cover;
-		}
-	}
+.hero-bottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 2rem;
+}
 
-	/* ====================================================== */
+.hero-bottom-left {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	max-width: 480px;
+}
 
-	.section {
-		display: grid;
-		gap: 2rem;
-	}
+.hero-bio {
+	font-size: 1rem;
+	color: var(--gray-300);
+	line-height: 1.8;
+}
 
-	.with-background {
-		position: relative;
-	}
+.hero-btns {
+	display: flex;
+	gap: 14px;
+	align-items: center;
+	flex-wrap: wrap;
+}
 
-	.with-background::before {
-		--hero-bg: var(--bg-image-subtle-2);
+.btn-fill {
+	font-size: 0.875rem;
+	font-weight: 500;
+	background: var(--gray-0);
+	color: var(--bg-surface);
+	padding: 10px 22px;
+	border-radius: 5px;
+	text-decoration: none;
+	transition: opacity var(--theme-transition);
+}
+.btn-fill:hover { opacity: 0.8; color: var(--bg-surface); }
 
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		left: 50%;
-		width: 100vw;
-		aspect-ratio: calc(2.25 / var(--bg-scale));
-		top: 0;
-		transform: translateY(-75%) translateX(-50%);
-		background:
-			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-			var(--gray-999);
-		background-blend-mode: overlay, normal, normal, normal;
-		mix-blend-mode: var(--bg-blend-mode);
-		z-index: -1;
-	}
+.btn-ghost {
+	font-size: 0.875rem;
+	color: var(--gray-400);
+	text-decoration: none;
+	transition: color var(--theme-transition);
+}
+.btn-ghost:hover { color: var(--gray-0); }
 
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
+.avail {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+.avail-dot {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--accent);
+	flex-shrink: 0;
+}
+.avail span:last-child {
+	font-size: 0.75rem;
+	color: var(--gray-400);
+}
 
-	.section-header {
-		justify-self: center;
-		text-align: center;
-		max-width: 50ch;
-		font-size: var(--text-md);
-		color: var(--gray-300);
-	}
+.photo-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	margin-right: 4rem;
+	margin-top: -200px;
+}
 
-	.section-header h3 {
-		font-size: var(--text-2xl);
-	}
+.photo-circle {
+	width: 360px;
+	height: 360px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 3px solid var(--border-color);
+	flex-shrink: 0;
+	box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
 
-	@media (min-width: 50em) {
-		.section {
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
-			gap: 5rem;
-		}
+.hero-photo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 20%;
+	display: block;
+}
 
-		.section.with-cta {
-			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
-		}
+@media (max-width: 50em) {
+	.hero { padding: 2rem 1.5rem; }
+	.hero-bottom { flex-direction: column; align-items: flex-start; }
+	.photo-wrap { margin-right: 0; margin-top: 0; }
+	.photo-circle { width: 160px; height: 160px; }
+}
 
-		.section-header {
-			grid-area: header;
-			font-size: var(--text-lg);
-		}
+/* ── TICKER ────────────────────────────────────────────── */
+.ticker-wrap {
+	
+	background: var(--bg-darkest);
+	border-bottom: 1px solid var(--border-color);
+	padding: 8px 0;
+}
+.ticker-inner {
+	display: inline-flex;
+	gap: 2rem;
+	animation: ticker 32s linear infinite;
+	white-space: nowrap;
+}
+.ti {
+	font-size: 0.6875rem;
+	font-weight: 500;
+	color: #555;
+	letter-spacing: 0.8px;
+	flex-shrink: 0;
+}
+.ti.accent { color: var(--accent); }
+@keyframes ticker {
+	0%   { transform: translateX(0); }
+	100% { transform: translateX(-50%); }
+}
 
-		.section-header h3 {
-			font-size: var(--text-4xl);
-		}
+/* ── MAIN BODY ─────────────────────────────────────────── */
+.main-body { padding: 0 2.5rem 4rem; }
 
-		.with-cta .section-header {
-			justify-self: flex-start;
-			text-align: left;
-		}
+.section-label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 2px;
+	color: var(--gray-400);
+	text-transform: uppercase;
+	margin-bottom: 1rem;
+	margin-top: 2.5rem;
+	display: block;
+}
 
-		.gallery {
-			grid-area: gallery;
-		}
+/* ── BENTO ─────────────────────────────────────────────── */
+.bento {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1px;
+	background: var(--border-color);
+	border: 1px solid var(--border-color);
+	border-radius: 10px;
+	overflow: hidden;
+}
 
-		.cta {
-			grid-area: cta;
-		}
-	}
+.bento-card {
+	background: var(--bg-surface);
+	padding: 1rem 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	text-decoration: none;
+	position: relative;
+	transition: background var(--theme-transition);
+}
+.bento-card:hover { background: var(--gray-800); }
 
-	/* ====================================================== */
 
-	/* Center align the entire news section */
-	.section.bg-variant {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-	}
+	background: rgba(255,255,255,0.2);
+	color: rgba(255,255,255,0.9);
+	border-color: rgba(255,255,255,0.2);
+}
 
-	.section.bg-variant .section-header {
-		text-align: center;
-	}
+.card-title {
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--gray-0);
+	line-height: 1.3;
+	letter-spacing: -0.01em;
+}
 
-	.news-gallery {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		max-width: none;
-		padding: 0 2rem;
-	}
+.card-desc {
+	font-size: 0.75rem;
+	color: var(--gray-300);
+	line-height: 1.6;
+	margin-bottom: 4px;
+}
 
-	.news-timeline {
-		background: var(--gray-999_40);
-		border: 1px solid var(--gray-800);
-		border-radius: 1rem;
-		padding: 2.5rem;
-		box-shadow: var(--shadow-md);
-		max-height: 500px;
-		overflow-y: auto;
-		overflow-x: hidden;
-		width: 100%;
-		max-width: 1000px;
-		margin: 0 auto;
-		scrollbar-width: thin;
-		scrollbar-color: var(--accent-regular) var(--gray-800);
-	}
+.card-pills {
+	display: flex;
+	gap: 5px;
+	flex-wrap: wrap;
+	margin-top: auto;
+}
 
-	/* Custom scrollbar for webkit browsers */
-	.news-timeline::-webkit-scrollbar {
-		width: 10px;
-	}
+.card-pill {
+	font-size: 0.6875rem;
+	padding: 3px 10px;
+	border-radius: 3px;
+	background: var(--gray-700);
+	color: var(--gray-200);
+	border: 1px solid var(--gray-600);
+}
 
-	.news-timeline::-webkit-scrollbar-track {
-		background: var(--gray-800);
-		border-radius: 5px;
-	}
+.card-arrow {
+	position: absolute;
+	top: 1.1rem;
+	right: 1.1rem;
+	font-size: 0.75rem;
+	color: var(--gray-500);
+}
 
-	.news-timeline::-webkit-scrollbar-thumb {
-		background: var(--accent-regular);
-		border-radius: 5px;
-	}
+@media (max-width: 50em) {
+	.bento { grid-template-columns: 1fr; }
+}
+	font-size: 0.8125rem;
+	color: rgba(255,255,255,0.7);
+	line-height: 1.55;
+}
+.now-dot {
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: var(--accent);
+	flex-shrink: 0;
+	margin-top: 6px;
+}
 
-	.news-timeline::-webkit-scrollbar-thumb:hover {
-		background: var(--accent-text-over);
-	}
+@media (max-width: 50em) {
+	.bento { grid-template-columns: 1fr; }
+	.bento-card.currently { grid-column: 1; grid-row: auto; }
+}
 
-	/* Force scrollbar to always show */
-	.news-timeline::-webkit-scrollbar-thumb {
-		background: var(--accent-regular);
-		border-radius: 5px;
-		min-height: 20px;
-	}
+/* ── NEWS ──────────────────────────────────────────────── */
+.news-grid {
+	display: flex;
+	gap: 1px;
+	background: var(--border-color);
+	border: 1px solid var(--border-color);
+	border-radius: 10px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-width: thin;
+	scrollbar-color: var(--border-color) transparent;
+}
 
-	/* Custom scrollbar for webkit browsers */
-	.news-timeline::-webkit-scrollbar {
-		width: 8px;
-	}
+.news-card {
+	background: var(--bg-surface);
+	padding: 1rem 1.25rem;
+	min-width: 280px;
+	max-width: 320px;
+	flex-shrink: 0;
+}
 
-	.news-timeline::-webkit-scrollbar-track {
-		background: var(--gray-800);
-		border-radius: 4px;
-	}
+.news-meta {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	margin-bottom: 7px;
+}
 
-	.news-timeline::-webkit-scrollbar-thumb {
-		background: var(--accent-regular);
-		border-radius: 4px;
-	}
+.news-date { font-size: 0.75rem; color: var(--gray-400); }
 
-	.news-timeline::-webkit-scrollbar-thumb:hover {
-		background: var(--accent-text-over);
-	}
+.news-badge {
+	font-size: 0.6875rem;
+	font-weight: 600;
+	padding: 2px 8px;
+	border-radius: 3px;
+}
+.badge-research { background: #F0DEDA; color: #7A3028; }
+.badge-work     { background: #DCE8D8; color: #285020; }
+.badge-school   { background: #DDD8EE; color: #302868; }
 
-	.news-item {
-		display: flex;
-		gap: 2rem;
-		align-items: flex-start;
-		padding-bottom: 2rem;
-		border-bottom: 1px solid var(--gray-800);
-	}
+.news-text { font-size: 0.875rem; color: var(--gray-300); line-height: 1.65; }
 
-	.news-item:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
+/* ── EXPERIENCE ────────────────────────────────────────── */
+.exp-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1px;
+	background: var(--border-color);
+	border: 1px solid var(--border-color);
+	border-radius: 10px;
+	
+}
 
-	.news-date {
-		flex-shrink: 0;
-		width: 120px;
-		font-size: var(--text-sm);
-		font-weight: 600;
-		color: var(--gray-100);
-		text-align: left;
-	}
+.exp-card { background: var(--bg-surface); padding: 1.1rem 1.25rem; }
 
-	.news-content {
-		flex: 1;
-	}
+.exp-date {
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: var(--accent);
+	letter-spacing: 0.3px;
+	margin-bottom: 5px;
+}
 
-	.news-description {
-		color: var(--gray-300);
-		line-height: 1.6;
-		margin: 0;
-	}
+.exp-org {
+	font-size: 0.9375rem;
+	font-weight: 500;
+	color: var(--gray-0);
+	margin-bottom: 3px;
+}
 
-	.news-description em {
-		color: var(--accent-regular);
-		font-style: italic;
-	}
+.exp-role { font-size: 0.8125rem; color: var(--gray-400); line-height: 1.4; }
 
-	@media (max-width: 50em) {
-		.news-gallery {
-			padding: 0 1rem;
-		}
-
-		.news-timeline {
-			padding: 1.5rem;
-			max-height: 400px;
-		}
-
-		.news-item {
-			flex-direction: column;
-			gap: 0.5rem;
-			padding-bottom: 1.5rem;
-		}
-
-		.news-date {
-			width: auto;
-			font-size: var(--text-xs);
-		}
-	}
-
-	/* Role pill styles - much smaller version */
-	.roles :global(.role-pill) {
-		padding: 0.1em 0.3em !important;
-		font-size: 0.6rem !important;
-		font-weight: 500;
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
-	}
-
-	.roles :global(.role-pill:hover) {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-lg);
-	}
-
-	.roles {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.3rem;
-		justify-content: flex-start;
-	}
-
-	@media (max-width: 50em) {
-		.roles :global(.role-pill) {
-			font-size: 0.55rem !important;
-			padding: 0.08em 0.25em !important;
-		}
-	}
+@media (max-width: 50em) {
+	.main-body { padding: 0 1.25rem 3rem; }
+	.exp-grid  { grid-template-columns: 1fr; }
+	.news-grid { grid-template-columns: 1fr; }
+}
 </style>
