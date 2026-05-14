@@ -23,63 +23,28 @@ const badgeClass: Record<string, string> = {
 ---
 
 <BaseLayout>
-	<div class="stack gap-20 lg:gap-48">
-		<div class="wrapper stack gap-8 lg:gap-20">
-			<header class="hero">
-				<Hero
-					title="Hello, my name is Rhea Nair"
-					tagline="I am a Data Scientist who is currently based in Boulder, Colorado."
-					align="start"
-				>
-					<div class="roles">
-						<CallToAction href={import.meta.env.BASE_URL + "about/"} class="role-pill">
-							<Icon icon="code" size="0.9em" /> Developer
-						</CallToAction>
-						<CallToAction href={import.meta.env.BASE_URL + "about/"} class="role-pill">
-							<Icon icon="microphone-stage" size="0.9em" /> Speaker
-						</CallToAction>
-						<CallToAction href={import.meta.env.BASE_URL + "about/"} class="role-pill">
-							<Icon icon="pencil-line" size="0.9em" /> Writer
-						</CallToAction>
-					</div>
-				</Hero>
 
-				<img
-					alt="Rhea Nair"
-					width="480"
-					height="620"
-					src={`${import.meta.env.BASE_URL}assets/potrait.jpg`}
-					
-					class="object-contain w-full h-48 rounded-lg"
-				/>
-			</header>
+	<!-- ── HERO ──────────────────────────────────────────── -->
+	<header class="hero">
+		<div class="hero-name-block">
+			<span class="eyebrow">DATA SCIENTIST · BOULDER, CO</span>
+			<h1 class="hero-name">Rhea<br/><span class="accent">Nair</span></h1>
 		</div>
-
-		<main class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background with-cta">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
-					<p>Take a look below at some of my featured work for clients from the past few years.</p>
-				</header>
-
-				<div class="gallery">
-					<Grid variant="offset">
-						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
-					</Grid>
+		<div class="hero-bottom">
+			<div class="hero-bottom-left">
+				<p class="hero-bio">I build machine learning systems and data pipelines that turn messy real-world data into reliable insights.</p>
+				<div class="hero-btns">
+					<a href={`${base}work/`} class="btn-fill">View work</a>
+					<a href={`${base}assets/RheaNairResume.pdf`} target="_blank" rel="noopener" class="btn-ghost">Resume ↗</a>
 				</div>
-				<div class="avail">
-					<span class="avail-dot"></span>
-					<span>Open to full-time · Bay Area / Remote</span>
+			</div>
+			<div class="photo-wrap">
+				<div class="photo-circle">
+					<img class="hero-photo" src={`${base}assets/potrait.jpg`} alt="Rhea Nair" width="360" height="360" />
 				</div>
 			</div>
 		</div>
-	</section>
+	</header>
 
 	<!-- ── TICKER ────────────────────────────────────────── -->
 	<div class="ticker-wrap" aria-hidden="true">
@@ -242,24 +207,6 @@ const badgeClass: Record<string, string> = {
 }
 .btn-ghost:hover { color: var(--gray-0); }
 
-.avail {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 6px;
-}
-.avail-dot {
-	width: 6px;
-	height: 6px;
-	border-radius: 50%;
-	background: var(--accent);
-	flex-shrink: 0;
-}
-.avail span:last-child {
-	font-size: 0.75rem;
-	color: var(--gray-400);
-}
-
 .photo-wrap {
 	display: flex;
 	flex-direction: column;
@@ -296,7 +243,6 @@ const badgeClass: Record<string, string> = {
 
 /* ── TICKER ────────────────────────────────────────────── */
 .ticker-wrap {
-	
 	background: var(--bg-darkest);
 	border-bottom: 1px solid var(--border-color);
 	padding: 8px 0;
@@ -357,12 +303,6 @@ const badgeClass: Record<string, string> = {
 }
 .bento-card:hover { background: var(--gray-800); }
 
-
-	background: rgba(255,255,255,0.2);
-	color: rgba(255,255,255,0.9);
-	border-color: rgba(255,255,255,0.2);
-}
-
 .card-title {
 	font-size: 0.875rem;
 	font-weight: 500;
@@ -404,23 +344,6 @@ const badgeClass: Record<string, string> = {
 
 @media (max-width: 50em) {
 	.bento { grid-template-columns: 1fr; }
-}
-	font-size: 0.8125rem;
-	color: rgba(255,255,255,0.7);
-	line-height: 1.55;
-}
-.now-dot {
-	width: 4px;
-	height: 4px;
-	border-radius: 50%;
-	background: var(--accent);
-	flex-shrink: 0;
-	margin-top: 6px;
-}
-
-@media (max-width: 50em) {
-	.bento { grid-template-columns: 1fr; }
-	.bento-card.currently { grid-column: 1; grid-row: auto; }
 }
 
 /* ── NEWS ──────────────────────────────────────────────── */
@@ -473,7 +396,6 @@ const badgeClass: Record<string, string> = {
 	background: var(--border-color);
 	border: 1px solid var(--border-color);
 	border-radius: 10px;
-	
 }
 
 .exp-card { background: var(--bg-surface); padding: 1.1rem 1.25rem; }
