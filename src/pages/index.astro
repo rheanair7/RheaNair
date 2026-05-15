@@ -22,29 +22,44 @@ const badgeClass: Record<string, string> = {
 };
 ---
 
-<BaseLayout>
+<BaseLayout title="Rhea Nair" description="ML Engineer & Data Scientist">
 
-	<!-- ── HERO ──────────────────────────────────────────── -->
-	<header class="hero">
+	<!-- ── HERO ─────────────────────────────────────────── -->
+	<section class="hero">
 		<div class="hero-name-block">
-			<span class="eyebrow">DATA SCIENTIST · BOULDER, CO</span>
-			<h1 class="hero-name">Rhea<br/><span class="accent">Nair</span></h1>
+			<p class="eyebrow">ML ENGINEER · DATA SCIENTIST · CU BOULDER</p>
+			<h1 class="hero-name">Rhea<br /><span class="accent">Nair.</span></h1>
 		</div>
 		<div class="hero-bottom">
 			<div class="hero-bottom-left">
-				<p class="hero-bio">I build machine learning systems and data pipelines that turn messy real-world data into reliable insights.</p>
+				<p class="hero-bio">
+					I build systems that learn from fine-tuning vision models on CULane
+					to data infrastructure that ships real cargo. Hard problems at the edge
+					of ML and systems.
+				</p>
 				<div class="hero-btns">
 					<a href={`${base}work/`} class="btn-fill">View work</a>
-					<a href={`${base}assets/RheaNairResume.pdf`} target="_blank" rel="noopener" class="btn-ghost">Resume ↗</a>
+					<a href="https://www.linkedin.com/in/rheanair07" target="_blank" rel="noopener" class="btn-ghost">LinkedIn →</a>
+					<a href="https://github.com/rheanair7" target="_blank" rel="noopener" class="btn-ghost">GitHub →</a>
 				</div>
 			</div>
 			<div class="photo-wrap">
 				<div class="photo-circle">
-					<img class="hero-photo" src={`${base}assets/potrait.jpg`} alt="Rhea Nair" width="360" height="360" />
+					<img
+						src={`${import.meta.env.BASE_URL}assets/potrait.jpg`}
+						alt="Rhea Nair"
+						width="480"
+						height="560"
+						class="hero-photo"
+					/>
+				</div>
+				<div class="avail">
+					<span class="avail-dot"></span>
+					<span>Open to full-time · Bay Area / Remote</span>
 				</div>
 			</div>
 		</div>
-	</header>
+	</section>
 
 	<!-- ── TICKER ────────────────────────────────────────── -->
 	<div class="ticker-wrap" aria-hidden="true">
@@ -85,7 +100,7 @@ const badgeClass: Record<string, string> = {
 			))}
 		</div>
 
-		<!-- ── RECENT ─────────────────────────────────────── -->
+		<!-- ── RECENT NEWS ────────────────────────────────── -->
 		<p class="section-label" style="margin-top:2.5rem">RECENT NEWS</p>
 		<div class="news-grid">
 			{newsItems.map(item => (
@@ -234,6 +249,24 @@ const badgeClass: Record<string, string> = {
 	display: block;
 }
 
+.avail {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+.avail-dot {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--accent);
+	flex-shrink: 0;
+}
+.avail span:last-child {
+	font-size: 0.75rem;
+	color: var(--gray-400);
+}
+
 @media (max-width: 50em) {
 	.hero { padding: 2rem 1.5rem; }
 	.hero-bottom { flex-direction: column; align-items: flex-start; }
@@ -243,6 +276,7 @@ const badgeClass: Record<string, string> = {
 
 /* ── TICKER ────────────────────────────────────────────── */
 .ticker-wrap {
+	overflow: hidden;
 	background: var(--bg-darkest);
 	border-bottom: 1px solid var(--border-color);
 	padding: 8px 0;
@@ -396,6 +430,7 @@ const badgeClass: Record<string, string> = {
 	background: var(--border-color);
 	border: 1px solid var(--border-color);
 	border-radius: 10px;
+	overflow: hidden;
 }
 
 .exp-card { background: var(--bg-surface); padding: 1.1rem 1.25rem; }
