@@ -185,13 +185,6 @@ declare module 'astro:content' {
   collection: "work";
   data: any
 } & { render(): Render[".md"] };
-"bouldermove-trip-planner.md": {
-	id: "bouldermove-trip-planner.md";
-  slug: "bouldermove-trip-planner";
-  body: string;
-  collection: "work";
-  data: any
-} & { render(): Render[".md"] };
 "clrnet-failure-analysis.md": {
 	id: "clrnet-failure-analysis.md";
   slug: "clrnet-failure-analysis";

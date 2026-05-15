@@ -1,276 +1,473 @@
 ---
-import ContactCTA from '../components/ContactCTA.astro';
-import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import EducationTimeline from '../components/educationtimeline.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title="About | Rhea Nair" description="About Rhea Nair">
-	<div class="stack gap-20">
-		<main class="wrapper about">
-			<Hero
-				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
-			>
-				<img
-					width="1553"
-					height="873"
-					src={`${import.meta.env.BASE_URL}assets/potrait.jpg`}
-					alt="Jeanine White at work with a colleague"
-				/>
-			</Hero>
+<BaseLayout title="About — Rhea Nair" description="About Rhea Nair">
 
-			<section>
-				<h2 class="section-title">Background</h2>
-				<div class="content">
-					<p>
-						work in progress.
-					</p>
-					<p>
-						
-					</p>
-					<p>
-					</p>
+	<div class="about-header">
+		<div class="header-left">
+			<p class="eyebrow">ABOUT</p>
+			<h1 class="about-title">Rhea <span class="accent">Nair.</span></h1>
+		</div>
+		<div class="header-right">
+			<p class="about-tagline">ML Engineer & Data Scientist based in Boulder, CO.</p>
+			<div class="contact-row">
+				<a href="https://www.linkedin.com/in/rheanair07" target="_blank" rel="noopener" class="contact-link">LinkedIn ↗</a>
+				<a href="https://github.com/rheanair7" target="_blank" rel="noopener" class="contact-link">GitHub ↗</a>
+				<a href="mailto:rheanair071@gmail.com" class="contact-link">Email ↗</a>
+				<a href={`${base}assets/RheaNairResume.pdf`} target="_blank" rel="noopener" class="contact-link accent-link">Resume ↗</a>
+			</div>
+		</div>
+	</div>
+
+	<main class="about-body">
+
+		<!-- ── BACKGROUND ──────────────────────────────────── -->
+		<div class="section-grid">
+			<div class="section-label-col">
+				<p class="section-label">BACKGROUND</p>
+			</div>
+			<div class="section-content">
+				<p class="bio-para">I'm from Mumbai. I did my undergrad in CS there, then moved to the US for grad school — first Virginia Tech, now CU Boulder. That's a lot of degrees, I know. But they all ended up pointing at the same thing: I like building things that work on real data, not just in notebooks.</p>
+				<p class="bio-para">Most of my work lives somewhere between ML and engineering. I've trained vision models, built NLP pipelines, shipped data infrastructure for a logistics company. The part I find most interesting is always the same — what breaks when you move from a working prototype to something that actually has to run.</p>
+				<p class="bio-para">When I'm not at my desk I'm usually outside. Colorado has been good for that — I've been hiking a lot since I moved here, working through national parks and planning the next trail whenever I can. I grew up in a city of 20 million people and somehow ended up really loving being in the middle of nowhere.</p>
+			</div>
+		</div>
+
+		<div class="divider"></div>
+
+		<!-- ── EDUCATION ───────────────────────────────────── -->
+		<div class="section-grid">
+			<div class="section-label-col">
+				<p class="section-label">EDUCATION</p>
+			</div>
+			<div class="section-content">
+				<div class="edu-grid">
+					<div class="edu-card">
+						<p class="edu-date">2025 — 2027</p>
+						<p class="edu-school">University of Colorado Boulder</p>
+						<p class="edu-degree">MS Computer Science</p>
+						<p class="edu-detail">Neural Networks · ML Systems · Data Science</p>
+					</div>
+					<div class="edu-card">
+						<p class="edu-date">2023 — 2025</p>
+						<p class="edu-school">Virginia Tech</p>
+						<p class="edu-degree">Dual MS — Business Analytics & Cybersecurity</p>
+						<p class="edu-detail">CGPA 3.97 / 4.00</p>
+					</div>
+					<div class="edu-card">
+						<p class="edu-date">2019 — 2023</p>
+						<p class="edu-school">NMIMS Mumbai</p>
+						<p class="edu-degree">BTech Computer Science</p>
+						<p class="edu-detail">Honours in Data Science</p>
+					</div>
 				</div>
-			</section>
-		
-				<section>
-					<h2 class="section-title">Education</h2>
-					<EducationTimeline />
-				</section>
-			<section>
-				<h2 class="section-title">Skills</h2>
-				<div class="content">
-					<div class="skills-grid">
-						<div class="skill-category">
-							<h3>Languages & Frameworks</h3>
-							<ul>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Python`}>Python</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=JavaScript`}>JavaScript</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=SQL`}>SQL</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=HTML5`}>HTML5 & CSS3</a></li>
-							</ul>
-						</div>
+			</div>
+		</div>
 
-						<div class="skill-category">
-							<h3>Machine Learning & AI</h3>
-							<ul>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=PyTorch`}>PyTorch</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Transformers`}>Transformers / Hugging Face</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=BERT`}>BERT, RoBERTa, BERTopic</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=XGBoost`}>XGBoost</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Scikit-learn`}>Scikit-learn</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Sentence-Transformers`}>Sentence-Transformers</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=spaCy`}>spaCy</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Demucs`}>Demucs (Audio ML)</a></li>
-							</ul>
-						</div>
+		<div class="divider"></div>
 
-						<div class="skill-category">
-							<h3>Data Science & Analytics</h3>
-							<ul>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Pandas`}>Pandas & NumPy</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Matplotlib`}>Matplotlib & Seaborn</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Tableau`}>Tableau</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Statistical Analysis</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Time Series Forecasting</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>RFM Analysis</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Association Rules (Apriori)</a></li>
-							</ul>
+		<!-- ── SKILLS ──────────────────────────────────────── -->
+		<div class="section-grid">
+			<div class="section-label-col">
+				<p class="section-label">SKILLS</p>
+			</div>
+			<div class="section-content">
+				<div class="skills-grid">
+					<div class="skill-group">
+						<p class="skill-group-label">ML / AI</p>
+						<div class="skill-pills">
+							<span class="pill">PyTorch</span>
+							<span class="pill">HuggingFace</span>
+							<span class="pill">BERT</span>
+							<span class="pill">BLIP-2</span>
+							<span class="pill">XGBoost</span>
+							<span class="pill">Scikit-learn</span>
+							<span class="pill">Grad-CAM</span>
+							<span class="pill">spaCy</span>
+							<span class="pill">CLAHE</span>
+							<span class="pill">Sentence-Transformers</span>
 						</div>
-
-						<div class="skill-category">
-							<h3>Backend & APIs</h3>
-							<ul>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Flask`}>Flask</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=FastAPI`}>FastAPI</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>REST APIs</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Microservices Architecture</a></li>
-							</ul>
+					</div>
+					<div class="skill-group">
+						<p class="skill-group-label">DATA ENGINEERING</p>
+						<div class="skill-pills">
+							<span class="pill">SQL</span>
+							<span class="pill">MySQL</span>
+							<span class="pill">PostgreSQL</span>
+							<span class="pill">Apache Superset</span>
+							<span class="pill">Pandas</span>
+							<span class="pill">NumPy</span>
+							<span class="pill">ETL Pipelines</span>
+							<span class="pill">dbt</span>
+							<span class="pill">Tableau</span>
 						</div>
-
-						<div class="skill-category">
-							<h3>Cloud & DevOps</h3>
-							<ul>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Google Cloud`}>Google Cloud Platform (GCP)</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=AWS`}>AWS (EC2, S3)</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Kubernetes`}>Kubernetes</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Docker`}>Docker</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Cloud Run</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Compute Engine</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Cloud SQL</a></li>
-							</ul>
+					</div>
+					<div class="skill-group">
+						<p class="skill-group-label">SYSTEMS & INFRA</p>
+						<div class="skill-pills">
+							<span class="pill">Kubernetes</span>
+							<span class="pill">Helm</span>
+							<span class="pill">Docker</span>
+							<span class="pill">DigitalOcean</span>
+							<span class="pill">GCP</span>
+							<span class="pill">AWS</span>
+							<span class="pill">FastAPI</span>
+							<span class="pill">Spring Boot</span>
+							<span class="pill">Redis</span>
+							<span class="pill">nginx</span>
 						</div>
-
-						<div class="skill-category">
-							<h3>Databases & Storage</h3>
-							<ul>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=PostgreSQL`}>PostgreSQL</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=MongoDB`}>MongoDB</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Redis`}>Redis</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=MinIO`}>MinIO (S3-compatible)</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=NoSQL`}>NoSQL</a></li>
-							</ul>
-						</div>
-
-						<div class="skill-category">
-							<h3>Big Data & Distributed Systems</h3>
-							<ul>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Hadoop`}>Apache Hadoop</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=Spark`}>Apache Spark</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Distributed Processing</a></li>
-							</ul>
-						</div>
-
-						<div class="skill-category">
-							<h3>Web & Frontend</h3>
-							<ul>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=React`}>React</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=HTML5`}>HTML5 & CSS3</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Google Maps API</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Responsive Design</a></li>
-							</ul>
-						</div>
-
-						<div class="skill-category">
-							<h3>Specialized Tools</h3>
-							<ul>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>GTFS & RAPTOR (Transit Routing)</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=OSMnx`}>OSMnx (Geospatial)</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=NetworkX`}>NetworkX (Graph Analysis)</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work?skill=BeautifulSoup`}>BeautifulSoup (Web Scraping)</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Google Colab</a></li>
-								<li><a href={`${import.meta.env.BASE_URL}work`}>Git & Version Control</a></li>
-							</ul>
+					</div>
+					<div class="skill-group">
+						<p class="skill-group-label">LANGUAGES & TOOLS</p>
+						<div class="skill-pills">
+							<span class="pill">Python</span>
+							<span class="pill">TypeScript</span>
+							<span class="pill">Java</span>
+							<span class="pill">SQL</span>
+							<span class="pill">React</span>
+							<span class="pill">Git</span>
+							<span class="pill">Linux</span>
+							<span class="pill">OSMnx</span>
+							<span class="pill">NetworkX</span>
 						</div>
 					</div>
 				</div>
-			</section>
-		</main>
+			</div>
+		</div>
 
-		<ContactCTA />
-	</div>
+		<div class="divider"></div>
+
+		<!-- ── EXPERIENCE ──────────────────────────────────── -->
+		<div class="section-grid">
+			<div class="section-label-col">
+				<p class="section-label">EXPERIENCE</p>
+			</div>
+			<div class="section-content">
+				<div class="exp-list">
+					<div class="exp-row">
+						<div class="exp-left">
+							<p class="exp-date">2025 — Now</p>
+						</div>
+						<div class="exp-right">
+							<p class="exp-org">Ascend Cargo Systems</p>
+							<p class="exp-role">Full Stack Data Analytics Engineering Intern</p>
+							<p class="exp-detail">Built analytics_production data warehouse on a 71-table MySQL schema. Deployed Apache Superset 5.0 on Kubernetes with embedded dashboards, Spring Boot guest tokens, and an AI chat widget.</p>
+						</div>
+					</div>
+					<div class="exp-row">
+						<div class="exp-left">
+							<p class="exp-date">2024 — 2025</p>
+						</div>
+						<div class="exp-right">
+							<p class="exp-org">Virginia Tech</p>
+							<p class="exp-role">NLP Research Assistant</p>
+							<p class="exp-detail">Built an NLP pipeline that reduced academic paper review cycles from 14 days to 2. BERT-based classification and structured extraction on research literature.</p>
+						</div>
+					</div>
+					<div class="exp-row">
+						<div class="exp-left">
+							<p class="exp-date">2022 — 2023</p>
+						</div>
+						<div class="exp-right">
+							<p class="exp-org">TIFR Mumbai</p>
+							<p class="exp-role">Multi-Agent RL Research Intern</p>
+							<p class="exp-detail">Ran multi-agent reinforcement learning simulations at the Tata Institute of Fundamental Research. Worked on emergent behavior in cooperative agent environments.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="divider"></div>
+
+		<!-- ── BEYOND WORK ─────────────────────────────────── -->
+		<div class="section-grid">
+			<div class="section-label-col">
+				<p class="section-label">BEYOND WORK</p>
+			</div>
+			<div class="section-content">
+				<div class="beyond-grid">
+					<div class="beyond-card">
+						<div class="beyond-icon">🥾</div>
+						<p class="beyond-title">Hiking & National Parks</p>
+						<p class="beyond-desc">Colorado has been good to me — I've been working my way through the state's national parks and fourteeners. There's something about being in the mountains that resets everything. Rocky Mountain NP is a regular, but I'm always planning the next one.</p>
+					</div>
+					<div class="beyond-card">
+						<div class="beyond-icon">✈️</div>
+						<p class="beyond-title">Exploring New Places</p>
+						<p class="beyond-desc">I grew up in Mumbai, studied in Blacksburg, and ended up in Boulder — I think I'm drawn to places that feel different from where I've been. I travel whenever I can, usually with no real plan and a vague list of trails and food spots.</p>
+					</div>
+					<div class="beyond-card">
+						<div class="beyond-icon">🌄</div>
+						<p class="beyond-title">The Outdoors, Generally</p>
+						<p class="beyond-desc">Camping, road trips, sunrise hikes — if it involves being outside and away from a screen, I'm probably in. Colorado was a good choice for someone who turned out to really like being in nature.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
 </BaseLayout>
 
 <style>
-	.about {
-		display: flex;
-		flex-direction: column;
-		gap: 3.5rem;
+/* ── HEADER ──────────────────────────────────────────────── */
+.about-header {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3rem;
+	padding: 2.5rem 3rem 2rem;
+	border-bottom: 1px solid var(--border-color);
+	align-items: end;
+}
+
+.eyebrow {
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 2.5px;
+	color: var(--gray-400);
+	margin-bottom: 0.5rem;
+}
+
+.about-title {
+	font-size: clamp(2.5rem, 5vw, 4.5rem);
+	font-weight: 500;
+	color: var(--gray-0);
+	letter-spacing: -0.04em;
+	line-height: 0.95;
+}
+
+.accent { color: var(--accent); }
+
+.about-tagline {
+	font-size: 1rem;
+	color: var(--gray-300);
+	line-height: 1.6;
+	margin-bottom: 1.25rem;
+}
+
+.contact-row {
+	display: flex;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+}
+
+.contact-link {
+	font-size: 0.8125rem;
+	color: var(--gray-400);
+	text-decoration: none;
+	transition: color var(--theme-transition);
+}
+.contact-link:hover { color: var(--gray-0); }
+.accent-link { color: var(--accent); border-bottom: 1.5px solid var(--accent); padding-bottom: 1px; }
+.accent-link:hover { color: var(--accent-light); border-color: var(--accent-light); }
+
+/* ── BODY ────────────────────────────────────────────────── */
+.about-body {
+	padding: 0 3rem 5rem;
+}
+
+.divider {
+	border: none;
+	border-top: 1px solid var(--border-color);
+	margin: 0;
+}
+
+.section-grid {
+	display: grid;
+	grid-template-columns: 160px 1fr;
+	gap: 3rem;
+	padding: 2.5rem 0;
+}
+
+.section-label {
+	font-size: 0.625rem;
+	font-weight: 600;
+	letter-spacing: 2px;
+	color: var(--gray-500);
+	text-transform: uppercase;
+	padding-top: 4px;
+}
+
+/* ── BACKGROUND ──────────────────────────────────────────── */
+.bio-para {
+	font-size: 0.9375rem;
+	color: var(--gray-200);
+	line-height: 1.85;
+	margin-bottom: 1.25rem;
+	max-width: 60ch;
+}
+.bio-para:last-child { margin-bottom: 0; }
+
+/* ── EDUCATION ───────────────────────────────────────────── */
+.edu-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1px;
+	background: var(--border-color);
+	border: 1px solid var(--border-color);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.edu-card {
+	background: var(--bg-surface);
+	padding: 1.25rem;
+}
+
+.edu-date {
+	font-size: 0.6875rem;
+	font-weight: 600;
+	color: var(--accent);
+	letter-spacing: 0.3px;
+	margin-bottom: 6px;
+}
+
+.edu-school {
+	font-size: 0.9375rem;
+	font-weight: 500;
+	color: var(--gray-0);
+	margin-bottom: 3px;
+	line-height: 1.3;
+}
+
+.edu-degree {
+	font-size: 0.8125rem;
+	color: var(--gray-300);
+	margin-bottom: 4px;
+	line-height: 1.4;
+}
+
+.edu-detail {
+	font-size: 0.75rem;
+	color: var(--gray-500);
+}
+
+/* ── SKILLS ──────────────────────────────────────────────── */
+.skills-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+}
+
+.skill-group-label {
+	font-size: 0.625rem;
+	font-weight: 600;
+	letter-spacing: 1.5px;
+	color: var(--gray-400);
+	text-transform: uppercase;
+	margin-bottom: 0.75rem;
+}
+
+.skill-pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.pill {
+	font-size: 0.75rem;
+	padding: 4px 10px;
+	border-radius: 4px;
+	background: var(--gray-700);
+	color: var(--gray-200);
+	border: 1px solid var(--gray-600);
+}
+
+/* ── EXPERIENCE ──────────────────────────────────────────── */
+.exp-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+}
+
+.exp-row {
+	display: grid;
+	grid-template-columns: 120px 1fr;
+	gap: 2rem;
+	padding: 1.5rem 0;
+	border-bottom: 1px solid var(--border-color);
+}
+.exp-row:last-child { border-bottom: none; }
+
+.exp-date {
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: var(--accent);
+	padding-top: 3px;
+}
+
+.exp-org {
+	font-size: 0.9375rem;
+	font-weight: 500;
+	color: var(--gray-0);
+	margin-bottom: 2px;
+}
+
+.exp-role {
+	font-size: 0.8125rem;
+	color: var(--gray-400);
+	margin-bottom: 0.5rem;
+}
+
+.exp-detail {
+	font-size: 0.8125rem;
+	color: var(--gray-400);
+	line-height: 1.65;
+}
+
+/* ── BEYOND WORK ─────────────────────────────────────────── */
+.beyond-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1px;
+	background: var(--border-color);
+	border: 1px solid var(--border-color);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.beyond-card {
+	background: var(--bg-surface);
+	padding: 1.5rem 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.beyond-icon {
+	font-size: 1.5rem;
+	margin-bottom: 0.25rem;
+}
+
+.beyond-title {
+	font-size: 0.9375rem;
+	font-weight: 500;
+	color: var(--gray-0);
+	line-height: 1.3;
+}
+
+.beyond-desc {
+	font-size: 0.8125rem;
+	color: var(--gray-400);
+	line-height: 1.7;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 50em) {
+	.about-header {
+		grid-template-columns: 1fr;
+		padding: 2rem 1.5rem 1.5rem;
+		gap: 1.5rem;
 	}
-
-	img {
-		margin-top: 1.5rem;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
-
-	section {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		color: var(--gray-200);
-	}
-
-	.section-title {
-		grid-column-start: 1;
-		font-size: var(--text-xl);
-		color: var(--gray-0);
-	}
-
-	.content {
-		grid-column: 2 / 4;
-	}
-
-	.content :global(a) {
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
-	}
-
-	.content :global(a:hover),
-	.content :global(a:focus) {
-		text-decoration-color: currentColor;
-	}
-
-	.skills-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 2rem;
-		margin-top: 1rem;
-	}
-
-	.skill-category h3 {
-		color: var(--gray-0);
-		font-size: var(--text-xl);
-		font-weight: 700;
-		margin-bottom: 1rem;
-		border-bottom: 3px solid var(--accent-regular);
-		padding-bottom: 0.75rem;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-	}
-
-	.skill-category ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	.skill-category li {
-		position: relative;
-		margin-bottom: 0.75rem;
-		line-height: 1.6;
-		font-size: var(--text-md);
-	}
-
-	.skill-category li a {
-		display: block;
-		padding: 0.5rem 0.5rem 0.5rem 1.5rem;
-		color: var(--gray-200);
-		text-decoration: none;
-		transition: all 0.2s ease;
-		border-radius: 0.25rem;
-	}
-
-	.skill-category li a:hover {
-		color: var(--accent-regular);
-		background: var(--gray-900);
-		transform: translateX(4px);
-	}
-
-	.skill-category li::before {
-		content: '▹';
-		position: absolute;
-		left: 0.25rem;
-		top: 0.5rem;
-		color: var(--accent-regular);
-		font-size: 1.2rem;
-		transition: transform 0.2s ease;
-		pointer-events: none;
-	}
-
-	.skill-category li:hover::before {
-		transform: translateX(3px);
-	}
-
-	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 1fr 60% 1fr;
-		}
-
-		.about > :global(:first-child) {
-			grid-column-start: 2;
-		}
-
-		section {
-			display: contents;
-			font-size: var(--text-lg);
-		}
-
-		.skills-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
+	.about-body { padding: 0 1.5rem 3rem; }
+	.section-grid { grid-template-columns: 1fr; gap: 1rem; }
+	.edu-grid { grid-template-columns: 1fr; }
+	.skills-grid { grid-template-columns: 1fr; }
+	.exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
+	.beyond-grid { grid-template-columns: 1fr; }
+}
 </style>
