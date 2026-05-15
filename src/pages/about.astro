@@ -30,9 +30,10 @@ const base = import.meta.env.BASE_URL;
 				<p class="section-label">BACKGROUND</p>
 			</div>
 			<div class="section-content">
-				<p class="bio-para">I'm from Mumbai. I did my undergrad in CS there, then moved to the US for grad school — first Virginia Tech, now CU Boulder. That's a lot of degrees, I know. But they all ended up pointing at the same thing: I like building things that work on real data, not just in notebooks.</p>
-				<p class="bio-para">Most of my work lives somewhere between ML and engineering. I've trained vision models, built NLP pipelines, shipped data infrastructure for a logistics company. The part I find most interesting is always the same — what breaks when you move from a working prototype to something that actually has to run.</p>
-				<p class="bio-para">When I'm not at my desk I'm usually outside. Colorado has been good for that — I've been hiking a lot since I moved here, working through national parks and planning the next trail whenever I can. I grew up in a city of 20 million people and somehow ended up really loving being in the middle of nowhere.</p>
+				<p class="bio-para">I'm an MS student in Computer Science at CU Boulder, with prior degrees in Business Analytics, Cybersecurity, and Computer Science. My work spans ML research and engineering I've built and analyzed vision models, designed NLP systems, and shipped data infrastructure that people actually use.</p>
+				<p class="bio-para">During my co-op at Ascend Cargo Systems, I built their analytics infrastructure from scratch and shipped an agentic AI chatbot that lets non-technical clients query complex logistics data in plain English. Before that, I was doing NLP research at Virginia Tech and multi-agent RL at TIFR Mumbai. The domains have been different but the approach is the same understand the problem deeply before touching the model.</p>
+				<p class="bio-para">I'm looking for roles in ML engineering or applied research where I can work across the full stack from understanding why a model fails to making sure it holds up in production.</p>
+				<p class="bio-para">When I'm not at my desk I'm usually somewhere outside hiking, exploring a new national park, or planning the next trail. Colorado has been very good for that.</p>
 			</div>
 		</div>
 
@@ -149,32 +150,45 @@ const base = import.meta.env.BASE_URL;
 				<div class="exp-list">
 					<div class="exp-row">
 						<div class="exp-left">
-							<p class="exp-date">2025 — Now</p>
+							<p class="exp-date">Jan 2026 — Now</p>
 						</div>
 						<div class="exp-right">
 							<p class="exp-org">Ascend Cargo Systems</p>
 							<p class="exp-role">Full Stack Data Analytics Engineering Intern</p>
-							<p class="exp-detail">Built analytics_production data warehouse on a 71-table MySQL schema. Deployed Apache Superset 5.0 on Kubernetes with embedded dashboards, Spring Boot guest tokens, and an AI chat widget.</p>
+							<ul class="exp-bullets">
+								<li>Led integration of an agentic AI chatbot into Apache Superset, enabling clients to autonomously query data via natural language and accelerating time-to-insight.</li>
+								<li>Built the company's first data warehouse and ETL pipelines over a production MySQL schema, creating a structured data foundation for downstream analytics and ML.</li>
+								<li>Developed analytical dashboards and SQL reporting queries surfacing KPIs such as tender acceptance rate and late shipment aging.</li>
+								<li>Deployed an embedded BI environment on Kubernetes with role-based access and Row Level Security for governed, client-specific data visibility.</li>
+							</ul>
 						</div>
 					</div>
 					<div class="exp-row">
 						<div class="exp-left">
-							<p class="exp-date">2024 — 2025</p>
+							<p class="exp-date">May 2024 — Jul 2024</p>
 						</div>
 						<div class="exp-right">
 							<p class="exp-org">Virginia Tech</p>
-							<p class="exp-role">NLP Research Assistant</p>
-							<p class="exp-detail">Built an NLP pipeline that reduced academic paper review cycles from 14 days to 2. BERT-based classification and structured extraction on research literature.</p>
+							<p class="exp-role">Research Assistant</p>
+							<ul class="exp-bullets">
+								<li>Reduced the research paper review cycle from 14 days to 2 by developing Python automation scripts with Pandas and regex-based parsing, improving workflow efficiency by 85%.</li>
+								<li>Applied NLP classification models using scikit-learn and spaCy to automatically categorize academic documents, reducing manual review time by 70%.</li>
+								<li>Automated data collection and preprocessing pipelines with BeautifulSoup, Pandas, and NLTK, creating scalable reproducible workflows for faculty research.</li>
+							</ul>
 						</div>
 					</div>
 					<div class="exp-row">
 						<div class="exp-left">
-							<p class="exp-date">2022 — 2023</p>
+							<p class="exp-date">Jan 2023 — Jan 2024</p>
 						</div>
 						<div class="exp-right">
 							<p class="exp-org">TIFR Mumbai</p>
-							<p class="exp-role">Multi-Agent RL Research Intern</p>
-							<p class="exp-detail">Ran multi-agent reinforcement learning simulations at the Tata Institute of Fundamental Research. Worked on emergent behavior in cooperative agent environments.</p>
+							<p class="exp-role">Data Scientist & Researcher</p>
+							<ul class="exp-bullets">
+								<li>Designed and executed multi-agent RL simulations in PyTorch, managing large-scale experimental data in both NoSQL and relational SQL formats.</li>
+								<li>Engineered a Neuro Evolution-based deep RL model improving training efficiency by 85% over baseline and reducing computational resource consumption.</li>
+								<li>Leveraged Hadoop and Apache Spark for distributed data preprocessing and analysis across simulation workloads.</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -198,12 +212,7 @@ const base = import.meta.env.BASE_URL;
 					<div class="beyond-card">
 						<div class="beyond-icon">✈️</div>
 						<p class="beyond-title">Exploring New Places</p>
-						<p class="beyond-desc">I grew up in Mumbai, studied in Blacksburg, and ended up in Boulder — I think I'm drawn to places that feel different from where I've been. I travel whenever I can, usually with no real plan and a vague list of trails and food spots.</p>
-					</div>
-					<div class="beyond-card">
-						<div class="beyond-icon">🌄</div>
-						<p class="beyond-title">The Outdoors, Generally</p>
-						<p class="beyond-desc">Camping, road trips, sunrise hikes — if it involves being outside and away from a screen, I'm probably in. Colorado was a good choice for someone who turned out to really like being in nature.</p>
+						<p class="beyond-desc">I think I'm drawn to places that feel different from where I've been. I travel whenever I can, usually with no real plan and a vague list of trails and food spots.</p>
 					</div>
 				</div>
 			</div>
@@ -413,16 +422,35 @@ const base = import.meta.env.BASE_URL;
 	margin-bottom: 0.5rem;
 }
 
-.exp-detail {
+.exp-bullets {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.exp-bullets li {
 	font-size: 0.8125rem;
 	color: var(--gray-400);
 	line-height: 1.65;
+	padding-left: 1rem;
+	position: relative;
+}
+
+.exp-bullets li::before {
+	content: '—';
+	position: absolute;
+	left: 0;
+	color: var(--accent);
+	font-size: 0.75rem;
 }
 
 /* ── BEYOND WORK ─────────────────────────────────────────── */
 .beyond-grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	gap: 1px;
 	background: var(--border-color);
 	border: 1px solid var(--border-color);
